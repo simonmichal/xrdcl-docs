@@ -1,0 +1,64 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}
+\contentsline {section}{\numberline {2}Configuration File}{3}{section.2}
+\contentsline {section}{\numberline {3}Command line tools (xrdcp/xrdfs)}{4}{section.3}
+\contentsline {subsection}{\numberline {3.1}xrdcp - copy files}{4}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}xrdfs - xrootd file and directory meta-data utility}{7}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}Return Codes}{7}{subsection.3.3}
+\contentsline {section}{\numberline {4}Environment Variables}{7}{section.4}
+\contentsline {subsection}{\numberline {4.1}Categories}{7}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}Index of Environment Variables}{9}{subsection.4.2}
+\contentsline {subsubsection}{\numberline {4.2.1}XRD_APPNAME}{9}{subsubsection.4.2.1}
+\contentsline {subsubsection}{\numberline {4.2.2}XRD_CLIENTMONITOR}{9}{subsubsection.4.2.2}
+\contentsline {subsubsection}{\numberline {4.2.3}XRD_CLIENTMONITORPARAM}{10}{subsubsection.4.2.3}
+\contentsline {subsubsection}{\numberline {4.2.4}XRD_CONNECTIONWINDOW}{10}{subsubsection.4.2.4}
+\contentsline {subsubsection}{\numberline {4.2.5}XRD_CONNECTIONRETRY}{10}{subsubsection.4.2.5}
+\contentsline {subsubsection}{\numberline {4.2.6}XRD_CPCHUNKSIZE}{10}{subsubsection.4.2.6}
+\contentsline {subsubsection}{\numberline {4.2.7}XRD_CPINITTIMEOUT}{10}{subsubsection.4.2.7}
+\contentsline {subsubsection}{\numberline {4.2.8}XRD_CPPARALLELCHUNKS}{10}{subsubsection.4.2.8}
+\contentsline {subsubsection}{\numberline {4.2.9}XRD_CPTPCTIMEOUT}{10}{subsubsection.4.2.9}
+\contentsline {subsubsection}{\numberline {4.2.10}XRD_DATASERVERTTL}{10}{subsubsection.4.2.10}
+\contentsline {subsubsection}{\numberline {4.2.11}XRD_GLFNREDIRECTOR}{11}{subsubsection.4.2.11}
+\contentsline {subsubsection}{\numberline {4.2.12}XRD_LOADBALANCERTTL}{11}{subsubsection.4.2.12}
+\contentsline {subsubsection}{\numberline {4.2.13}XRD_LOCALMETALINKFILE}{11}{subsubsection.4.2.13}
+\contentsline {subsubsection}{\numberline {4.2.14}XRD_LOGFILE}{11}{subsubsection.4.2.14}
+\contentsline {subsubsection}{\numberline {4.2.15}XRD_LOGLEVEL}{11}{subsubsection.4.2.15}
+\contentsline {subsubsection}{\numberline {4.2.16}XRD_LOGMASK}{11}{subsubsection.4.2.16}
+\contentsline {subsubsection}{\numberline {4.2.17}XRD_MAXMETALINKWAIT}{12}{subsubsection.4.2.17}
+\contentsline {subsubsection}{\numberline {4.2.18}XRD_METALINKPROCESSING}{12}{subsubsection.4.2.18}
+\contentsline {subsubsection}{\numberline {4.2.19}XRD_NETWORKSTACK}{12}{subsubsection.4.2.19}
+\contentsline {subsubsection}{\numberline {4.2.20}XRD_NODELAY}{12}{subsubsection.4.2.20}
+\contentsline {subsubsection}{\numberline {4.2.21}XRD_OPENRECOVERY}{12}{subsubsection.4.2.21}
+\contentsline {subsubsection}{\numberline {4.2.22}XRD_PARALLELEVTLOOP}{12}{subsubsection.4.2.22}
+\contentsline {subsubsection}{\numberline {4.2.23}XRD_PLUGIN}{13}{subsubsection.4.2.23}
+\contentsline {subsubsection}{\numberline {4.2.24}XRD_PLUGINCONFDIR}{13}{subsubsection.4.2.24}
+\contentsline {subsubsection}{\numberline {4.2.25}XRD_POLLERPREFERENCE}{13}{subsubsection.4.2.25}
+\contentsline {subsubsection}{\numberline {4.2.26}XRD_PREFERIPV4}{13}{subsubsection.4.2.26}
+\contentsline {subsubsection}{\numberline {4.2.27}XRD_READRECOVERY}{13}{subsubsection.4.2.27}
+\contentsline {subsubsection}{\numberline {4.2.28}XRD_REDIRECTLIMIT}{13}{subsubsection.4.2.28}
+\contentsline {subsubsection}{\numberline {4.2.29}XRD_REQUESTTIMEOUT}{13}{subsubsection.4.2.29}
+\contentsline {subsubsection}{\numberline {4.2.30}XRD_RUNFORKHANDLER}{13}{subsubsection.4.2.30}
+\contentsline {subsubsection}{\numberline {4.2.31}XRD_STREAMERRORWINDOW}{13}{subsubsection.4.2.31}
+\contentsline {subsubsection}{\numberline {4.2.32}XRD_STREAMTIMEOUT}{14}{subsubsection.4.2.32}
+\contentsline {subsubsection}{\numberline {4.2.33}XRD_SUBSTREAMSPERCHANNEL}{14}{subsubsection.4.2.33}
+\contentsline {subsubsection}{\numberline {4.2.34}XRD_TCPKEEPALIVE}{14}{subsubsection.4.2.34}
+\contentsline {subsubsection}{\numberline {4.2.35}XRD_TCPKEEPALIVEINTERVAL}{14}{subsubsection.4.2.35}
+\contentsline {subsubsection}{\numberline {4.2.36}XRD_TCPKEEPALIVEPROBES}{14}{subsubsection.4.2.36}
+\contentsline {subsubsection}{\numberline {4.2.37}XRD_TCPKEEPALIVETIME}{14}{subsubsection.4.2.37}
+\contentsline {subsubsection}{\numberline {4.2.38}XRD_TIMEOUTRESOLUTION}{14}{subsubsection.4.2.38}
+\contentsline {subsubsection}{\numberline {4.2.39}XRD_WORKERTHREADS}{14}{subsubsection.4.2.39}
+\contentsline {subsubsection}{\numberline {4.2.40}XRD_WRITERECOVERY}{14}{subsubsection.4.2.40}
+\contentsline {subsubsection}{\numberline {4.2.41}XRD_XCPBLOCKSIZE}{15}{subsubsection.4.2.41}
+\contentsline {subsection}{\numberline {4.3}Timeouts Explained}{15}{subsection.4.3}
+\contentsline {subsubsection}{\numberline {4.3.1}Connection Window and Connection Retry}{15}{subsubsection.4.3.1}
+\contentsline {subsubsection}{\numberline {4.3.2}Stream Timeout}{15}{subsubsection.4.3.2}
+\contentsline {subsubsection}{\numberline {4.3.3}Stream Error Window}{16}{subsubsection.4.3.3}
+\contentsline {subsubsection}{\numberline {4.3.4}RequestTimeout}{16}{subsubsection.4.3.4}
+\contentsline {subsubsection}{\numberline {4.3.5}Time To Live}{16}{subsubsection.4.3.5}
+\contentsline {subsubsection}{\numberline {4.3.6}How does it all come together?}{16}{subsubsection.4.3.6}
+\contentsline {subsubsection}{\numberline {4.3.7}xrdcp / XrdCl::CopyProcess Third-Party-Copy timeouts}{17}{subsubsection.4.3.7}
+\contentsline {section}{\numberline {5}Client Declarative API}{18}{section.5}
+\contentsline {subsection}{\numberline {5.1}List of Operations}{18}{subsection.5.1}
+\contentsline {subsection}{\numberline {5.2}Special Operations}{18}{subsection.5.2}
+\contentsline {subsection}{\numberline {5.3}Operation Handlers}{18}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}Utilities}{18}{subsection.5.4}
+\contentsline {subsection}{\numberline {5.5}Pipelining Semantics}{18}{subsection.5.5}
