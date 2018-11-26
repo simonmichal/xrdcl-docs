@@ -59,7 +59,7 @@
 \contentsline {section}{\numberline {5}Client Declarative API}{22}{section.5}
 \contentsline {subsection}{\numberline {5.1}Operation Utilities}{22}{subsection.5.1}
 \contentsline {subsection}{\numberline {5.2}Operation Handlers}{23}{subsection.5.2}
-\contentsline {subsection}{\numberline {5.3}Pipelining Semantics}{23}{subsection.5.3}
-\contentsline {subsection}{\numberline {5.4}List of Operations}{24}{subsection.5.4}
-\contentsline {subsubsection}{\numberline {5.4.1}File Operations}{24}{subsubsection.5.4.1}
-\contentsline {subsubsection}{\numberline {5.4.2}FileSystem Operations}{27}{subsubsection.5.4.2}
+\contentsline {subsection}{\numberline {5.3}Pipelining Semantics}{25}{subsection.5.3}
+\contentsline {subsection}{\numberline {5.4}List of Operations}{26}{subsection.5.4}
+\contentsline {subsubsection}{\numberline {5.4.1}File Operations}{26}{subsubsection.5.4.1}
+\contentsline {subsubsection}{\numberline {5.4.2}FileSystem Operations}{29}{subsubsection.5.4.2}

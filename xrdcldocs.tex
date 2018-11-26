@@ -1043,9 +1043,128 @@
 		
 	\subsection{Operation Handlers}
 	
-		The declarative API supports following handlers: \textit{XrdCl::ResponseHandler}, functions, function objects, lambdas, \textit{std::future} and \textit{std::packaged_task}.
+		The declarative API supports following handlers: \textit{XrdCl::ResponseHandler}, functions, function objects, lambdas, \textit{std::future} and 
+		\textit{std::package_task} (consult the list below for respective examples). Each operation defines its \textbf{response type} (see \hyperref[sec:lsop]	
+        {List of Operations}) that should be used when constructing a respective handler for the operation.
 
-		\ldots	
+        \begin{itemize}
+
+            \item \begin{samepage} \textbf{\textit{XrdCl::ResponseHandler}} -- standard XRootD response handler. Operations can accept \textit{XrdCl::ResponseHandler}
+                both by reference and pointer.
+                
+\begin{lstlisting}[language=C++, xleftmargin=\dimexpr-\leftmargini]
+
+  class ExampleHandler : public ResponseHandler
+  {
+    public:
+      void HandleResponse(
+             XRootDStatus *status, // status of the operation
+             AnyObject *response   // server response (type erased)
+           )
+      {
+        // handle the operation here
+      }
+  };	
+  
+  ...
+  
+  FileSystem fs(url);
+  ExampleHandler hndl;
+  
+  auto status = WaitFor( Stat(fs,path) >> hndl ); 	
+  
+\end{lstlisting}
+                
+            \end{samepage}
+
+            \item \begin{samepage} \textbf{functions / function objects / lambdas} -- the XRootD declarative API plays well with standard \textit{C++ callable
+            elements}. The callback signature has to match:
+            \begin{itemize}
+              \item \textit{std::function$<$void(XRootDStatus\&)} for operations that define their response type as \textit{void}.
+              \item \textit{std::function$<$void(XRootDStatus\&, Response\&)$>$} where \textit{Response} is defined as a response type for given operation. 
+            \end{itemize}
+            
+\begin{lstlisting}[language=C++, xleftmargin=\dimexpr-\leftmargini]
+  
+  void ExampleHandler(         
+         XRootDStatus &status, // status of the operation 
+         StatInfo     &info    // server response (explicit type)
+       )
+  {
+    // handle the operation here
+  }
+  
+  ...
+  
+  FileSystem fs(url);
+  // could also be a lambda or function object !!!
+  auto status = WaitFor( Stat(fs,path) >> ExampleHandler ); 	
+  
+\end{lstlisting}
+            
+            \end{samepage}
+
+            \item \begin{samepage} \textbf{\textit{std::future}} -- the \textit{future}'s template parameter has to match the response type of given operation. In case
+            of a failure the \textit{future} will throw an instance of \textit{XrdCl::PipelineException} that in turn will yield the \textit{XrdCl::XRo\-otDStatus}. 
+\pagebreak
+\begin{lstlisting}[language=C++, xleftmargin=\dimexpr-\leftmargini]
+  
+  File file;
+  std::future<ChunkInfo> resp;
+
+  Async( Read(off,size,buff) >> resp );
+  
+
+  ...
+  
+  // later on process the future
+  try
+  {
+    ...
+    // if everything went OK we will get the ChunkInfo,
+    // otherwise it will throw
+    ChunkInfo chunk = resp.get();
+    ...
+  }
+  catch( PipelineException &ex )
+  { 	
+    // we will learn the reason for failing from
+    // the status object
+    XRootDStatus &status = ex.GetError();
+    ...
+  }
+  
+\end{lstlisting}
+
+            \end{samepage}
+
+            \item \begin{samepage} \textbf{\textit{std:packaged_task}} is a combination of a lambda and a \textit{std::future}, e.g. it can be used to parse
+            the response with a lambda into a desired type of \textit{std::future}.
+            
+\begin{lstlisting}[language=C++, xleftmargin=\dimexpr-\leftmargini]
+  
+  using namespace std;
+  
+  packaged_task<uint64_t(XRootDStatus &st,StatInfo &info)> parse = 
+      [](XRootDStatus &st, StatInfo &info)
+        {
+          if(!st.IsOK) throw PipelineException(st);
+          return info.GetSize();
+        };
+  
+  FileSystem fs(url);
+  future<std::string> size = parse.get_future();
+
+  Async( Stat(fs,path) >> resp );
+
+  // later on use size the same way as 
+  // the future from previous example
+  
+\end{lstlisting}
+            
+            \end{samepage}
+
+        \end{itemize}
 	
 	\subsection{Pipelining Semantics}
 	
@@ -1054,237 +1173,555 @@
 	\ldots
 	
 	\subsection{List of Operations}
+	\label{sec:lsop}
 	
 		There are two types of operations: the \textit{XrdCl::File} operations and \textit{XrdCl::FileSys-tem} operations. Each operation has a well defined
 		set of arguments, however \textbf{any argument might be lifted} to a \textit{std::future} or a \textit{XrdCl::Fwd}. It is possible (\textbf{but not mandatory})
-		to specify a handler for each operation using the streaming operator (\textit{operator$>$$>$}). All Operations are non-copyable
-		objects (\textit{move} only).
+		to specify a handler for each operation using the streaming operator (\textit{operator$>$$>$}). All Operations are non-copyable objects (\textit{move} only).
 		
 		\subsubsection{File Operations}
 		
 			All arguments of any File Operation (except for the \textit{XrdCl::File} object itself) are \textbf{liftable to \textit{XrdCl::Fwd} and \textit{std::future}}.
 			
 			\begin{itemize}
-	
-				\item \textbf{Open} -- open remote / local file
-		
-			        \textbf{Signature}:
-			        \begin{itemize}
-			          \item \textit{Open( XrdCl::File \&file, \ldots);}
-			          \item \textit{Open( XrdCl::File *file, \ldots );}
-			        \end{itemize}
+
+                \item \begin{samepage} \textbf{Open} -- open remote / local file
+
+                    \textbf{Signature}:
+                    \begin{itemize}
+                        \item \textit{Open( XrdCl::File \&file, \ldots);}
+                        \item \textit{Open( XrdCl::File *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{url} -- base \textbf{type}: \textit{std::string}
+                        \item \underline{flags} -- base \textbf{type}: \textit{XrdCl::OpenFlags::Flags}
+                        \item \underline{mode} -- base \textbf{type}: \textit{XrdCl::Access::Mode}, \textbf{default}: \textit{Access::None}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}:
+                    \begin{itemize}
+                        \item \textit{void}
+                        \item \textit{XrdCl::StatInfo} \scriptsize{(not for XrdCl::ResponseHandler)}
+                    \end{itemize}
 					
-					\textbf{Arguments} (remaining):
-					\begin{itemize}
-					  \item \underline{url} -- base \textbf{type}: \textit{std::string}
-					  \item \underline{flags} -- base \textbf{type}: \textit{XrdCl::OpenFlags::Flags}
-					  \item \underline{mode} -- base \textbf{type}: \textit{XrdCl::Access::Mode}, \textbf{default}: \textit{Access::None}
-				    \end{itemize}
-						
-					\textbf{Response}:
-					\begin{itemize}
-					  \item \textit{void}
-					  \item \textit{XrdCl::StatInfo}
-					\end{itemize}
-					  
-				  \item \textbf{Read} -- read data from remote / local file
-				  
-				  	\textbf{Signature}:
-				  	\begin{itemize} 
-			          \item \textit{Read( XrdCl::File \&file, \ldots);}
-			          \item \textit{Read( XrdCl::File *file, \ldots );}
-			        \end{itemize}
-			        
-			        \textbf{Arguments} (remaining):
-					\begin{itemize}
-					  \item \underline{offset} -- base \textbf{type}: \textit{uint64_t}
-					  \item \underline{size} -- base \textbf{type}: \textit{uint32_t}
-					  \item \underline{buffer} -- base \textbf{type}: \textit{void*}
-				    \end{itemize}
-				    
-					\textbf{Response}:
-					\begin{itemize}
-					  \item \textit{XrdCl::ChunkInfo}
-					\end{itemize}
+                \end{samepage}
+
+                \item \begin{samepage} \textbf{Read} -- read data from remote / local file
+
+                    \textbf{Signature}:
+                    \begin{itemize} 
+                        \item \textit{Read( XrdCl::File \&file, \ldots);}
+                        \item \textit{Read( XrdCl::File *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{offset} -- base \textbf{type}: \textit{uint64_t}
+                        \item \underline{size} -- base \textbf{type}: \textit{uint32_t}
+                        \item \underline{buffer} -- base \textbf{type}: \textit{void*}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{XrdCl::ChunkInfo}
+
+                \end{samepage}
+
+                \item \begin{samepage} \textbf{Close} -- close remote / local file
+
+                    \textbf{Signature}:
+                    \begin{itemize} 
+                        \item \textit{Close( XrdCl::File \&file );}
+                        \item \textit{Close( XrdCl::File *file );}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{void}
+
+                \end{samepage}
+
+                \item \begin{samepage} \textbf{Stat} -- stat the remote / local file
+
+                    \textbf{Signature}:
+                    \begin{itemize} 
+                        \item \textit{Stat( XrdCl::File \&file, \ldots);}
+                        \item \textit{Stat( XrdCl::File *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{force} -- base \textbf{type}: \textit{bool}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{XrdCl::StatInfo}
+
+                \end{samepage}
+
+                \item \begin{samepage} \textbf{Write} -- write data to remote / local file
+
+                    \textbf{Signature}:
+                    \begin{itemize} 
+                        \item \textit{Write( XrdCl::File \&file, \ldots);}
+                        \item \textit{Write( XrdCl::File *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{offset} -- base \textbf{type}: \textit{uint64_t}
+                        \item \underline{size} -- base \textbf{type}: \textit{uint32_t}
+                        \item \underline{buffer} -- base \textbf{type}: \textit{void*}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{void}
+
+                \end{samepage}
+
+                \item \begin{samepage} \textbf{Sync} -- sync the remote / local file
+
+                    \textbf{Signature}:
+                    \begin{itemize} 
+                        \item \textit{Sync( XrdCl::File \&file );}
+                        \item \textit{Sync( XrdCl::File *file );}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{void}
+
+                \end{samepage}
+
+                \item \begin{samepage} \textbf{Truncate} -- truncate the remote / local file
+
+                    \textbf{Signature}:
+                    \begin{itemize} 
+                        \item \textit{Truncate( XrdCl::File \&file, \ldots);}
+                        \item \textit{Truncate( XrdCl::File *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{size} -- base \textbf{type}: \textit{uint64_t}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{void}
 					
-				  \item \textbf{Close} -- close remote / local file
-				  
-				  	\textbf{Signature}:
-				  	\begin{itemize} 
-			          \item \textit{Close( XrdCl::File \&file );}
-			          \item \textit{Close( XrdCl::File *file );}
-			        \end{itemize}
-			    
-					\textbf{Response}:
-					\begin{itemize}
-					  \item \textit{void}
-					\end{itemize}
+                \end{samepage}
+
+                \item \begin{samepage} \textbf{VectorRead} -- vector-read data from remote / local file
+
+                    \textbf{Signature}:
+                    \begin{itemize} 
+                        \item \textit{VectorRead( XrdCl::File \&file, \ldots);}
+                        \item \textit{VectorRead( XrdCl::File *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{chunks} -- base \textbf{type}: \textit{XrdCl::ChunkList}
+                        \item \underline{buffer} -- base \textbf{type}: \textit{void*}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{XrdCl::ChunkList}
 					
-				  \item \textbf{Stat} -- stat the remote / local file
-				  
-				  	\textbf{Signature}:
-				  	\begin{itemize} 
-			          \item \textit{Stat( XrdCl::File \&file, \ldots);}
-			          \item \textit{Stat( XrdCl::File *file, \ldots );}
-			        \end{itemize}
-			        
-			        \textbf{Arguments} (remaining):
-					\begin{itemize}
-					  \item \underline{force} -- base \textbf{type}: \textit{bool}
-				    \end{itemize}
-				    
-					\textbf{Response}:
-					\begin{itemize}
-					  \item \textit{XrdCl::StatInfo}
-					\end{itemize}
+                \end{samepage}
+
+                \item \begin{samepage} \textbf{VectorWrite} -- vector-write data to remote / local file
+
+                    \textbf{Signature}:
+                    \begin{itemize} 
+                        \item \textit{VectorWrite( XrdCl::File \&file, \ldots);}
+                        \item \textit{VectorWrite( XrdCl::File *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{chunks} -- base \textbf{type}: \textit{XrdCl::ChunkList}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{void}
+
+                \end{samepage}
+
+                \item \begin{samepage} \textbf{WriteV} -- writev data to remote / local file
+
+                    \textbf{Signature}:
+                    \begin{itemize} 
+                        \item \textit{WriteV( XrdCl::File \&file, \ldots);}
+                        \item \textit{WriteV( XrdCl::File *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{offset} -- base \textbf{type}: \textit{uint64_t}
+                        \item \underline{iov} -- base \textbf{type}: \textit{struct iovec*}
+                        \item \underline{iovcnt} -- base \textbf{type}: \textit{int}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{void}
 					
-				  \item \textbf{Write} -- write data to remote / local file
-				  
-				  	\textbf{Signature}:
-				  	\begin{itemize} 
-			          \item \textit{Write( XrdCl::File \&file, \ldots);}
-			          \item \textit{Write( XrdCl::File *file, \ldots );}
-			        \end{itemize}
-			        
-			        \textbf{Arguments} (remaining):
-					\begin{itemize}
-					  \item \underline{offset} -- base \textbf{type}: \textit{uint64_t}
-					  \item \underline{size} -- base \textbf{type}: \textit{uint32_t}
-					  \item \underline{buffer} -- base \textbf{type}: \textit{void*}
-				    \end{itemize}
-				    
-					\textbf{Response}:
-					\begin{itemize}
-					  \item \textit{void}
-					\end{itemize}
-					
-				  \item \textbf{Sync} -- sync the remote / local file
-				  
-				  	\textbf{Signature}:
-				  	\begin{itemize} 
-			          \item \textit{Sync( XrdCl::File \&file );}
-			          \item \textit{Sync( XrdCl::File *file );}
-			        \end{itemize}
-	
-					\textbf{Response}:
-					\begin{itemize}
-					  \item \textit{void}
-					\end{itemize}
-					
-				  \item \textbf{Truncate} -- truncate the remote / local file
-				  
-				  	\textbf{Signature}:
-				  	\begin{itemize} 
-			          \item \textit{Truncate( XrdCl::File \&file, \ldots);}
-			          \item \textit{Truncate( XrdCl::File *file, \ldots );}
-			        \end{itemize}
-			        
-			        \textbf{Arguments} (remaining):
-					\begin{itemize}
-					  \item \underline{size} -- base \textbf{type}: \textit{uint64_t}
-				    \end{itemize}
-				    
-					\textbf{Response}:
-					\begin{itemize}
-					  \item \textit{void}
-					\end{itemize}
-					
-				  \item \textbf{VectorRead} -- vector-read data from remote / local file
-				  
-				  	\textbf{Signature}:
-				  	\begin{itemize} 
-			          \item \textit{VectorRead( XrdCl::File \&file, \ldots);}
-			          \item \textit{VectorRead( XrdCl::File *file, \ldots );}
-			        \end{itemize}
-			        
-			        \textbf{Arguments} (remaining):
-					\begin{itemize}
-					  \item \underline{chunks} -- base \textbf{type}: \textit{XrdCl::ChunkList}
-					  \item \underline{buffer} -- base \textbf{type}: \textit{void*}
-				    \end{itemize}
-				    
-					\textbf{Response}:
-					\begin{itemize}
-					  \item \textit{XrdCl::ChunkList}
-					\end{itemize}
-					
-				  \item \textbf{VectorWrite} -- vector-write data to remote / local file
-				  
-				  	\textbf{Signature}:
-				  	\begin{itemize} 
-			          \item \textit{VectorWrite( XrdCl::File \&file, \ldots);}
-			          \item \textit{VectorWrite( XrdCl::File *file, \ldots );}
-			        \end{itemize}
-			        
-			        \textbf{Arguments} (remaining):
-					\begin{itemize}
-					  \item \underline{chunks} -- base \textbf{type}: \textit{XrdCl::ChunkList}
-				    \end{itemize}
-				    
-					\textbf{Response}:
-					\begin{itemize}
-					  \item \textit{void}
-					\end{itemize}
-					
-				  \item \textbf{WriteV} -- writev data to remote / local file
-				  
-				  	\textbf{Signature}:
-				  	\begin{itemize} 
-			          \item \textit{WriteV( XrdCl::File \&file, \ldots);}
-			          \item \textit{WriteV( XrdCl::File *file, \ldots );}
-			        \end{itemize}
-			        
-			        \textbf{Arguments} (remaining):
-					\begin{itemize}
-					  \item \underline{offset} -- base \textbf{type}: \textit{uint64_t}
-					  \item \underline{iov} -- base \textbf{type}: \textit{struct iovec*}
-					  \item \underline{iovcnt} -- base \textbf{type}: \textit{int}
-				    \end{itemize}
-				    
-					\textbf{Response}:
-					\begin{itemize}
-					  \item \textit{void}
-					\end{itemize}
-					
-				  \item \textbf{Fcntl} -- issue fcntl for remote / local file
-				  
-				  	\textbf{Signature}:
-				  	\begin{itemize} 
-			          \item \textit{Fcntl( XrdCl::File \&file, \ldots);}
-			          \item \textit{Fcntl( XrdCl::File *file, \ldots );}
-			        \end{itemize}
-			        
-			        \textbf{Arguments} (remaining):
-					\begin{itemize}
-					  \item \underline{arg} -- base \textbf{type}: \textit{XrdCl::Buffer}
-				    \end{itemize}
-				    
-					\textbf{Response}:
-					\begin{itemize}
-					  \item \textit{XrdCl::Buffer}
-					\end{itemize}
-					
-				  \item \textbf{Visa} -- issue fcntl for remote / local file
-				  
-				  	\textbf{Signature}:
-				  	\begin{itemize} 
-			          \item \textit{Visa( XrdCl::File \&file );}
-			          \item \textit{Visa( XrdCl::File *file );}
-			        \end{itemize}
-			        
-					\textbf{Response}:
-					\begin{itemize}
-					  \item \textit{XrdCl::Buffer}
-					\end{itemize}
-			        
-			\end{itemize}
-			
+                \end{samepage}
+
+                \item \begin{samepage} \textbf{Fcntl} -- issue fcntl for remote / local file
+
+                    \textbf{Signature}:
+                    \begin{itemize} 
+                        \item \textit{Fcntl( XrdCl::File \&file, \ldots);}
+                        \item \textit{Fcntl( XrdCl::File *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{arg} -- base \textbf{type}: \textit{XrdCl::Buffer}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{XrdCl::Buffer}
+
+                \end{samepage}
+
+                \item \begin{samepage} \textbf{Visa} -- issue fcntl for remote / local file
+
+                    \textbf{Signature}:
+                    \begin{itemize} 
+                        \item \textit{Visa( XrdCl::File \&file );}
+                        \item \textit{Visa( XrdCl::File *file );}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{XrdCl::Buffer}
+
+                \end{samepage}
+
+            \end{itemize}
+
 	    \subsubsection{FileSystem Operations}
 	    
 	    	All arguments of any FileSystem Operation (except for the \textit{XrdCl::FileSystem} object itself) are \textbf{liftable to \textit{XrdCl::Fwd} and \textit{std::future}}.
-	    	
+            \begin{itemize}
+
+                \item \begin{samepage} \textbf{Locate} -- locate remote file
+
+                    \textbf{Signature}:
+                    \begin{itemize}
+                        \item \textit{Locate( XrdCl::FileSystem \&file, \ldots);}
+                        \item \textit{Locate( XrdCl::FileSystem *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{path} -- base \textbf{type}: \textit{std::string}
+                        \item \underline{flags} -- base \textbf{type}: \textit{XrdCl::OpenFlags::Flags}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{LocationInfo}
+                    
+                \end{samepage}
+                    
+                \item \begin{samepage} \textbf{DeepLocate} -- recursively locate remote file
+
+                    \textbf{Signature}:
+                    \begin{itemize}
+                        \item \textit{DeepLocate( XrdCl::FileSystem \&file, \ldots);}
+                        \item \textit{DeepLocate( XrdCl::FileSystem *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{path} -- base \textbf{type}: \textit{std::string}
+                        \item \underline{flags} -- base \textbf{type}: \textit{XrdCl::OpenFlags::Flags}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{LocationInfo}
+                    
+                \end{samepage}
+                    
+                \item \begin{samepage} \textbf{Mv} -- move remote file
+
+                    \textbf{Signature}:
+                    \begin{itemize}
+                        \item \textit{Mv( XrdCl::FileSystem \&file, \ldots);}
+                        \item \textit{Mv( XrdCl::FileSystem *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{path1} -- base \textbf{type}: \textit{std::string}
+                        \item \underline{path2} -- base \textbf{type}: \textit{std::string}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{void}
+                    
+                \end{samepage}
+                    
+                \item \begin{samepage} \textbf{Query} -- query remote server
+
+                    \textbf{Signature}:
+                    \begin{itemize}
+                        \item \textit{Query( XrdCl::FileSystem \&file, \ldots);}
+                        \item \textit{Query( XrdCl::FileSystem *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{queryCode} -- base \textbf{type}: \textit{XrdCl::QueryCode::Code}
+                        \item \underline{argument} -- base \textbf{type}: \textit{XrdCl::Buffer}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{XrdCl::Buffer}
+                    
+                \end{samepage}
+                    
+                \item \begin{samepage} \textbf{Truncate} -- truncate remote file
+
+                    \textbf{Signature}:
+                    \begin{itemize}
+                        \item \textit{Truncate( XrdCl::FileSystem \&file, \ldots);}
+                        \item \textit{Truncate( XrdCl::FileSystem *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{path} -- base \textbf{type}: \textit{std::string}
+                        \item \underline{size} -- base \textbf{type}: \textit{uint64_t}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{void}
+                    
+                \end{samepage}
+                    
+                \item \begin{samepage} \textbf{Rm} -- remove remote file
+
+                    \textbf{Signature}:
+                    \begin{itemize}
+                        \item \textit{Rm( XrdCl::FileSystem \&file, \ldots);}
+                        \item \textit{Rm( XrdCl::FileSystem *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{path} -- base \textbf{type}: \textit{std::string}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{void}
+                    
+                \end{samepage}
+                    
+                \item \begin{samepage} \textbf{MkDir} -- create remote directory
+
+                    \textbf{Signature}:
+                    \begin{itemize}
+                        \item \textit{MkDir( XrdCl::FileSystem \&file, \ldots);}
+                        \item \textit{MkDir( XrdCl::FileSystem *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{path} -- base \textbf{type}: \textit{std::string}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{void}
+                    
+                \end{samepage}
+                    
+                \item \begin{samepage} \textbf{RmDir} -- remove remote directory
+
+                    \textbf{Signature}:
+                    \begin{itemize}
+                        \item \textit{RmDir( XrdCl::FileSystem \&file, \ldots);}
+                        \item \textit{RmDir( XrdCl::FileSystem *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{path} -- base \textbf{type}: \textit{std::string}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{void}
+                    
+                \end{samepage}
+                    
+                \item \begin{samepage} \textbf{ChMod} -- change access mode on a remote directory or file
+
+                    \textbf{Signature}:
+                    \begin{itemize}
+                        \item \textit{ChMod( XrdCl::FileSystem \&file, \ldots);}
+                        \item \textit{ChMod( XrdCl::FileSystem *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{path} -- base \textbf{type}: \textit{std::string}
+                        \item \underline{mode} -- base \textbf{type}: \textit{XrdCl::Access::Mode}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{void}
+                    
+                \end{samepage}
+                    
+                \item \begin{samepage} \textbf{Ping} -- ping remote server
+
+                    \textbf{Signature}:
+                    \begin{itemize}
+                        \item \textit{Ping( XrdCl::FileSystem \&file );}
+                        \item \textit{Ping( XrdCl::FileSystem *file );}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{void}
+                    
+                \end{samepage}
+                    
+                \item \begin{samepage} \textbf{Stat} -- stat remote directory or file
+
+                    \textbf{Signature}:
+                    \begin{itemize}
+                        \item \textit{Stat( XrdCl::FileSystem \&file, \ldots);}
+                        \item \textit{Stat( XrdCl::FileSystem *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{path} -- base \textbf{type}: \textit{std::string}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{XrdCl::StatInfo}
+                    
+                \end{samepage}
+                    
+                \item \begin{samepage} \textbf{StatVFS} -- status information for a Virtual File System
+
+                    \textbf{Signature}:
+                    \begin{itemize}
+                        \item \textit{StatVFS( XrdCl::FileSystem \&file, \ldots);}
+                        \item \textit{StatVFS( XrdCl::FileSystem *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{path} -- base \textbf{type}: \textit{std::string}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{XrdCl::StatInfoVFS}
+                    
+                \end{samepage}
+                    
+                \item \begin{samepage} \textbf{Protocol} -- obtain server protocol information
+
+                    \textbf{Signature}:
+                    \begin{itemize}
+                        \item \textit{Protocol( XrdCl::FileSystem \&file );}
+                        \item \textit{Protocol( XrdCl::FileSystem *file  );}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{XrdCl::ProtocolInfo}
+                    
+                \end{samepage}
+                    
+                \item \begin{samepage} \textbf{DirList} -- list remote directory
+
+                    \textbf{Signature}:
+                    \begin{itemize}
+                        \item \textit{DirList( XrdCl::FileSystem \&file, \ldots);}
+                        \item \textit{DirList( XrdCl::FileSystem *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{path} -- base \textbf{type}: \textit{std::string}
+                        \item \underline{flags} -- base \textbf{type}: \textit{XrdCl::DirListFlags::Flags}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}:\textit{XrdCl::DirectoryList}
+                    
+                \end{samepage}
+                    
+                \item \begin{samepage} \textbf{SendInfo} -- send info to remote server
+
+                    \textbf{Signature}:
+                    \begin{itemize}
+                        \item \textit{SendInfo( XrdCl::FileSystem \&file, \ldots);}
+                        \item \textit{SendInfo( XrdCl::FileSystem *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{info} -- base \textbf{type}: \textit{std::string}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{XrdCl::Buffer}
+                    
+                \end{samepage}
+                    
+                \item \begin{samepage} \textbf{Prepare} -- prepare one or more files for access
+
+                    \textbf{Signature}:
+                    \begin{itemize}
+                        \item \textit{Prepare( XrdCl::FileSystem \&file, \ldots);}
+                        \item \textit{Prepare( XrdCl::FileSystem *file, \ldots );}
+                    \end{itemize}
+
+                    \textbf{Arguments} (remaining):
+                    \begin{itemize}
+                        \item \underline{fileList} -- base \textbf{type}: \textit{std::vector<std::string>}
+                        \item \underline{flags} -- base \textbf{type}: \textit{XrdCl::PrepareFlags::Flags}
+                        \item \underline{priority} -- base \textbf{type}: \textit{uint8_t}
+                    \end{itemize}
+
+                    Operation \textbf{status}: \textit{XRootDStatus}
+
+                    \textbf{Response}: \textit{XrdCl::Buffer}
+                    
+                \end{samepage}
+                    
+                    
+            \end{itemize}
 	    
-	    \ldots		
-
-
 \end{document}
