@@ -57,8 +57,9 @@
 \BOOKMARK [3][-]{subsubsection.4.3.6}{How does it all come together?}{subsection.4.3}% 57
 \BOOKMARK [3][-]{subsubsection.4.3.7}{xrdcp / XrdCl::CopyProcess Third-Party-Copy timeouts}{subsection.4.3}% 58
 \BOOKMARK [1][-]{section.5}{Client Declarative API}{}% 59
-\BOOKMARK [2][-]{subsection.5.1}{List of Operations}{section.5}% 60
-\BOOKMARK [2][-]{subsection.5.2}{Special Operations}{section.5}% 61
-\BOOKMARK [2][-]{subsection.5.3}{Operation Handlers}{section.5}% 62
-\BOOKMARK [2][-]{subsection.5.4}{Utilities}{section.5}% 63
-\BOOKMARK [2][-]{subsection.5.5}{Pipelining Semantics}{section.5}% 64
+\BOOKMARK [2][-]{subsection.5.1}{Operation Utilities}{section.5}% 60
+\BOOKMARK [2][-]{subsection.5.2}{Operation Handlers}{section.5}% 61
+\BOOKMARK [2][-]{subsection.5.3}{Pipelining Semantics}{section.5}% 62
+\BOOKMARK [2][-]{subsection.5.4}{List of Operations}{section.5}% 63
+\BOOKMARK [3][-]{subsubsection.5.4.1}{File Operations}{subsection.5.4}% 64
+\BOOKMARK [3][-]{subsubsection.5.4.2}{FileSystem Operations}{subsection.5.4}% 65

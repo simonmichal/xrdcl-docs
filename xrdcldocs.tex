@@ -36,6 +36,7 @@
 }
  
 \lstset{style=mystyle}
+\lstset{showlines=true}
 
 \begin{document}
 
@@ -63,18 +64,33 @@
 \newpage
 
 \section{Introduction}
-    TODO philosophy: \\
-    	- connection handling hidden from user \\
-    	- 100\% async + event loop \\
-    	- threading model: all callbacks in thread-pool + poller thread + timers \\ 
-    	- tuned through envvars or XrdCl::DefaultEnv \\
-    	- OOD API (doxygen) \\
-    	- Posix API (link xrootd.org) \\
-    	- New declarative API (ref last section) \\
-    	- command line tools (ref xrdcp / xrdfs)
-    	
-	\ldots\ldots\ldots
+    
+    This document describes the client (\textit{\textbf{XrdCl}}) component of XRootD framework. In particular it focuses
+    on configuration options of the client (configuration file, environment variables, parameters) and on how they
+    interact with each other.
+    
+    \textit{\textbf{XrdCl}} is a multi-threaded C++ implementation of XRootD client based on an \textit{event-loop}, and is provided 
+    by the \textit{libXrdCl} library. The standard C++ API is documented \href{http://xrootd.org/doc/doxygen/current/html/annotated.html}
+	{here} and is out of the scope of this document. The \textit{XrdCl} implementation is fully asynchronous (all the synchronous 
+	calls have been implemented in terms of their asynchronous counterparts). All issued \textit{requests} are queued and sequentially 
+	processed by a single-threaded \textit{socket event-loop} (however in order to increase performance it is possible to employ more 
+	than one \textit{event-loop}). Also, all incoming \textit{responses} are processed by the \textit{event-loop}, however all the 
+	response handlers are executed in a \textit{thread-pool}. The behavior of \textit{XrdCl} can be tuned using a configuration file,
+	environment variables or \textit{XrdCl::DefaultEnv} utility. 
 	
+	Low level connection handling is hidden from the user. Once a request is issued a connection between the client and the server will 
+	be established automatically, the connection will be kept alive for further reuse until TTL timeout elapses. By default \textit{XrdCl} 
+	is multiplexing all request through a single physical connection, however it is possible to force the component to use multiple physical 
+	connections (up to 16) in order to increase the performance over WAN networks. It is also possible to force \textit{XrdCl} to disconnect
+	from a server (e.g. in order to reestablish the connection with a new credential). When the connection between client and server is 
+	being established the server may request the client to authenticate (if so, the server will send a list of acceptable authentication 
+	methods, e.g. \textit{krb5}, \textit{gsi}, etc.).
+
+	The \textbf{XrdCl} library is the base for following components: the command line interface (\textit{xrdcp} and \textit{xrdfs}), 
+	\href{http://xrootd.org/doc/python/xrootd-python/}{python bindings}, \href{http://xrootd.org/doc/dev49/ssi_reference-V2.htm}{SSI client} 
+	and the \href{http://xrootd.org/doc/dev49/pss_config.htm#_Toc525070693}{Posix API}.
+	
+	In addition, this document, in the last section, describes the new declarative client API introduced in \textbf{version 4.9.0}.
 
 \section{Configuration File}
 
@@ -275,7 +291,6 @@
 
 		\noindent Equivalent to "\textbf{--sources 12}". \\
 		
-		\pagebreak
 		\noindent \textbf{OPERANDS} \\
 		
 		\noindent \underline{source}: a dash (i.e. \textbf{-}) indicating stanard in, a local file, a local directory 
@@ -290,13 +305,171 @@
 
 		\textbf{xroot://} [\underline{user}\textbf{@}] \underline{host} [\textbf{:}\underline{port}] /absolutepath
 
-		\noindent The \underline{absolutepath} can be a directory. \\
+		\noindent The \underline{absolutepath} can be a directory.
 		
     \subsection{xrdfs - xrootd file and directory meta-data utility}
-    	\ldots\ldots\ldots
+    
+		\textbf{xrdfs} [--no-cwd] host[:port] [command [args]] \\
+		
+		\noindent \textbf{DESCRIPTION} \\
+		
+		The \textbf{xrdfs} utility executes meta-data oriented operations (e.g., ls, mv, rm, etc.) on one or more xrootd servers.
+		Command help is available by invoking xrdfs with no command line options or parameters and then typing "help" in response
+		to the input prompt. \\
+		
+		\noindent \textbf{OPTIONS} \\
+		
+		\noindent \textbf{--no-cwd}
+		
+        \noindent No CWD is being preset in interactive mode. \\
+        
+        \pagebreak
+        
+        \noindent \textbf{COMMANDS} \\
+        
+        \noindent \textbf{chmod} \underline{path} $<$\underline{user}$>$$<$\underline{group}$>$$<$\underline{other}$>$ \\
+        \noindent Modify permissions of the path. Permission string example: rwxr-x--x \\
+
+        \noindent \textbf{ls} [\underline{-l}] [\underline{-u}] [\underline{-R}] [\underline{dirname}] \\
+        Get directory listing. 
+        
+        \underline{-l} stat every entry and pring long listing
+        
+        \underline{-u} print paths as URLs
+        
+        \underline{-R} list subdirectories recursively
+         
+        \underline{-D} show duplicate entries \\ 
+
+        \noindent \textbf{locate} [-n] [-r] [-d] $<$path$>$ \\
+        Get the locations of the path.
+        
+        \underline{-r} refresh, don't use cached locations
+          
+        \underline{-n} make the server return the response immediately (it may be incomplete)
+          
+        \underline{-d} do a recursive, deep locate in order to find data servers
+          
+        \underline{-m} prefer host names to IP addresses
+          
+        \underline{-i} ignore network dependencies (IPv6/IPv4) \\
+
+        \noindent \textbf{mkdir} [-p] [-m$<$user$>$$<$group$>$$<$other$>$] $<$dirname$>$ \\
+        Creates a directory/tree of directories.
+        
+        \underline{-p} create the entire directory tree recursively
+        
+        \underline{-m}$<$user$>$$<$group$>$$<$other$>$ permissions for newly created directories \\
+
+        \noindent \textbf{mv} $<$path1$>$ $<$path2$>$ \\
+        Move path1 to path2 locally on the same server. \\
+
+        \noindent \textbf{stat} $<$path$>$
+        
+        \noindent Get info about the file or directory.
+
+		\begin{minipage}{\dimexpr\textwidth-\parindent}
+        \noindent \underline{-q} query optional flag query parameter that makes xrdfs return error code to the shell if the requested flag combination is not present; flags may be combined together using '$\vert$' or '\&'
+        Available flags: \textbf{XBitSet}, \textbf{IsDir}, \textbf{Other}, \textbf{Offline}, \textbf{POSCPending}, \textbf{IsReadable}, \textbf{IsWriteable} \\
+        \end{minipage}
+
+        \noindent \textbf{statvfs} $<$path$>$
+        
+        \noindent Get info about a virtual file system. \\
+
+        \noindent \textbf{query} $<$code$>$ $<$params$>$
+        
+        \noindent Obtain server information. Query codes:
+        
+        \underline{config} \textbf{$<$what$>$} Server configuration; $<$what$>$ is one of the following:
+		\begin{itemize}        
+           \item bind_max      - the maximum number of parallel streams
+           \item chksum        - the supported checksum
+           \item pio_max       - maximum number of parallel I/O requests
+           \item readv_ior_max - maximum size of a readv element
+           \item readv_iov_max - maximum number of readv entries
+           \item tpc           - support for third party copies
+           \item wan_port      - the port to use for wan copies
+           \item wan_window    - the wan_port window size
+           \item window        - the tcp window size
+           \item cms           - the status of the cmsd
+           \item role          - the role in a cluster
+           \item sitename      - the site name
+           \item version       - the version of the server
+        \end{itemize}      
+               
+		\underline{checksumcancel} \textbf{$<$path$>$} File checksum cancelation
+		
+        \underline{checksum} \textbf{$<$path$>$}File checksum
+        
+        \underline{opaque} \textbf{$<$arg$>$} Implementation dependent
+        
+        \underline{opaquefile} \textbf{$<$arg$>$} Implementation dependent
+        
+        \underline{space} \textbf{$<$space$>$} Logical space stats
+        
+        \begin{minipage}{\dimexpr\textwidth-\parindent}
+        \underline{stats} \textbf{$<$what$>$} Server stats; $<$what$>$ is a list of letters indicating information to be returned:
+        \end{minipage}
+        \begin{itemize}
+           \item a - all statistics
+           \item p - protocol statistics
+           \item b - buffer usage statistics
+           \item s - scheduling statistics
+           \item d - device polling statistics
+           \item u - usage statistics
+           \item i - server identification
+           \item z - synchronized statistics
+           \item l - connection statistics
+        \end{itemize}
+        
+        \underline{xattr} \textbf{$<$path$>$} Extended attributes \\
+
+        \noindent \textbf{rm} \underline{$<$filename$>$}
+        
+        \noindent Remove a file. \\
+
+		\pagebreak
+ 
+        \noindent \textbf{rmdir} \underline{$<$dirname$>$}
+        
+        \noindent Remove a directory. \\
+
+        \noindent \textbf{truncate} \underline{$<$filename$>$} \underline{$<$length$>$}
+        
+        \noindent Truncate a file. \\
+
+        \noindent \textbf{prepare} \underline{[-c]} \underline{[-f]} \underline{[-s]} \underline{[-w]} \underline{[-p priority]} \underline{filenames}
+        
+        \noindent Prepare one or more files for access.
+        \begin{itemize}
+           \item -c co-locate staged files if possible
+           \item -f refresh file access time even if the location is known
+           \item -s stage the files to disk if they are not online
+           \item -w whe files will be accessed for modification
+           \item -p priority of the request, 0 (lowest) - 3 (highest)
+        \end{itemize}
+
+        \noindent \textbf{cat} \underline{[-o localfile]} \underline{file}
+        
+        \noindent Print contents of a file to stdout
+        
+        \underline{-o} print to the specified local file \\
+
+        \noindent \textbf{tail} \underline{[-c bytes]} \underline{[-f]} \underline{file}
+        
+        \noindent Output last part of files to stdout.
+        
+        \underline{-c} num_bytes out last num_bytes
+        \underline{-f} output appended data as file grows \\
+
+        \noindent \textbf{spaceinfo} \underline{path}
+        
+        \noindent Get space statistics for given path.
 
 	\subsection{Return Codes}
 		\begin{itemize}
+		  	\item \textbf{0}  : success 
   			\item \textbf{50} : generic error (e.g. config, internal, data, OS, command line option)
   			\item \textbf{51} : socket related error
 			\item \textbf{52} : postmaster related error
@@ -765,35 +938,353 @@
 			consult the \href{http://xrootd.org/doc/dev49/tpc_protocol.htm}{TPC Protocol Reference}). 
 
 
+\pagebreak
+
 \section{Client Declarative API}
 
-	This section describes XRootD client declarative API introduced in 4.9.0. For the standard 
-	\textit{XrdCl::File} and \textit{XrdCl::FileSystem}API please consult our \href{http://xrootd.org/doc/doxygen/current/html/annotated.html}
-	{Doxygen} documentation. 
+	This section describes XRootD client declarative API introduced in version 4.9.0. For the standard 
+	\textit{XrdCl::File} and \textit{XrdCl::FileSystem} API please consult our \href{http://xrootd.org/doc/doxygen/current/html/annotated.html}
+	{Doxygen} documentation. Similarly as the standard \textit{XrdCl} API, the declarative API allows to issue \textit{File} and \textit{FileSystem}
+	operations, however its sole focus is on facilitating the asynchronous programing model and chaining of operations. Also, the new API has been
+	designed to be more in line with modern C++ programming practices (see example below). 
 	
-	\subsection{List of Operations}
+\begin{lstlisting}[language=C++]
+
+  File f;
+  std::future<ChunkInfo> resp;
+  
+  // open, read from and close the file
+  Pipeline p  = Open(file,url,OpenFlags::Read)
+              | Read(file,offset,size,buffer) >> resp 
+              | Close(file);
+
+  auto status = WaitFor(p);
+
+\end{lstlisting}
 	
-	open, close, read, write \ldots\ldots\ldots \\
-	+
-	arguments and response type
+	\subsection{Operation Utilities}
 	
-	\subsection{Special Operations}
+		There are several utilities for facilitating composition of operations:
+		
+		\begin{itemize}
+		  
+		  \item \textbf{Pipeline}: a class that can wrap any kind of operation (including compound operations).
+		  
+		  \item \textbf{Async}: a utility for asynchronous execution of pipelines. 
+		  
+		  		Returns: \textit{std::future$<$XrdCl::XRootDStatus$>$}
+		  		
+\begin{lstlisting}[language=C++, xleftmargin=\dimexpr-\leftmargini]
+
+  FileSystem fs(url);
+  std::future<XRootDStatus> status = 
+                  Async( Truncate(fs,path,size) );
+  
+\end{lstlisting}
+		  
+		  \item \textbf{WaitFor}: a utility for synchronous execution of pipelines. 
+		  		
+		  		Returns: \textit{XrdCl::XRootDStatus}.
+		  		
+\begin{lstlisting}[language=C++, xleftmargin=\dimexpr-\leftmargini]
+
+  FileSystem fs(url);
+  XRootDStatus status = WaitFor( Truncate(fs,path,size) );
+  
+\end{lstlisting}
+		  
+		  \item \textbf{XrdCl::Fwd}: a \textit{forward} is used to pass values between different operations in a pipeline. In particular it can
+		  		be used to forward a value from an operation handler to a subsequent operation as an argument.
 	
-	parallel, later optional
-	
+		  		Consider following example of reading a whole file of unknown size:
+
+\begin{lstlisting}[language=C++, xleftmargin=\dimexpr-\leftmargini]
+		
+  Fwd<uint32_t> size; // size of the file
+  Fwd<void*>    buff; // buffer for the data
+  
+  std::future<ChunkInfo> resp; // server response
+
+  auto &&p = Open(file,url,OpenFlags::Read) >> 
+               [size,buff](XRootDStatus &status,StatInfo &info)
+                 {
+                   if(!status.IsOK()) return;
+                   size = info.GetSize(); // forward size and
+                   buff = new char[info.GetSize()]; // buffer
+                 }
+           | Read(file,0,size,buff) >> resp 
+           | Close(file);
+
+  auto status = WaitFor( p );
+  
+\end{lstlisting}
+	            In lines 2-3 we declare forwardable \textit{size} and \textit{buffer} arguments. In the pipeline we first issue an open, which we handle
+	            with a lambda (open returns also stat information). Inside of the lambda (lines 11-12) we set the values of \textit{size} and \textit{buffer}.
+	            In the subsequent \textit{Read} (line 14) operation we use the \textit{size} and \textit{buffer} although they values will be only set once
+	            we get the response for the preceding \textit{Open}. 
+		  
+		  \item \textbf{XrdCl::Parallel}: aggregates several operations (might be compound operations) for parallel execution; as an argument accepts \textbf{variable 
+		  		number of operations} or a \textbf{container of operations} (see example below).
+	  		
+\begin{lstlisting}[language=C++, xleftmargin=\dimexpr-\leftmargini]
+		
+  auto &&o1   = Open(file1,url1,OpenFlags::Read);
+  auto &&o2   = Open(file2,url2,OpenFlags::Read);
+  auto &&o2   = Open(file2,url2,OpenFlags::Read);
+  
+  // open 3 files in parallel
+  Pipeline p  = Parallel(o1,o2,o3);
+  
+  auto status = WaitFor( p );
+  
+\end{lstlisting}
+
+		\end{itemize}
+		
 	\subsection{Operation Handlers}
 	
-	ResponseHandler, function/functor/lambda, std::future, std::packaged_task
-	
-	\subsection{Utilities}
-	
-	Fwd class
+		The declarative API supports following handlers: \textit{XrdCl::ResponseHandler}, functions, function objects, lambdas, \textit{std::future} and \textit{std::packaged_task}.
+
+		\ldots	
 	
 	\subsection{Pipelining Semantics}
 	
 	examples on how to create and run pipelines
 	
-
+	\ldots
+	
+	\subsection{List of Operations}
+	
+		There are two types of operations: the \textit{XrdCl::File} operations and \textit{XrdCl::FileSys-tem} operations. Each operation has a well defined
+		set of arguments, however \textbf{any argument might be lifted} to a \textit{std::future} or a \textit{XrdCl::Fwd}. It is possible (\textbf{but not mandatory})
+		to specify a handler for each operation using the streaming operator (\textit{operator$>$$>$}). All Operations are non-copyable
+		objects (\textit{move} only).
+		
+		\subsubsection{File Operations}
+		
+			All arguments of any File Operation (except for the \textit{XrdCl::File} object itself) are \textbf{liftable to \textit{XrdCl::Fwd} and \textit{std::future}}.
+			
+			\begin{itemize}
+	
+				\item \textbf{Open} -- open remote / local file
+		
+			        \textbf{Signature}:
+			        \begin{itemize}
+			          \item \textit{Open( XrdCl::File \&file, \ldots);}
+			          \item \textit{Open( XrdCl::File *file, \ldots );}
+			        \end{itemize}
+					
+					\textbf{Arguments} (remaining):
+					\begin{itemize}
+					  \item \underline{url} -- base \textbf{type}: \textit{std::string}
+					  \item \underline{flags} -- base \textbf{type}: \textit{XrdCl::OpenFlags::Flags}
+					  \item \underline{mode} -- base \textbf{type}: \textit{XrdCl::Access::Mode}, \textbf{default}: \textit{Access::None}
+				    \end{itemize}
+						
+					\textbf{Response}:
+					\begin{itemize}
+					  \item \textit{void}
+					  \item \textit{XrdCl::StatInfo}
+					\end{itemize}
+					  
+				  \item \textbf{Read} -- read data from remote / local file
+				  
+				  	\textbf{Signature}:
+				  	\begin{itemize} 
+			          \item \textit{Read( XrdCl::File \&file, \ldots);}
+			          \item \textit{Read( XrdCl::File *file, \ldots );}
+			        \end{itemize}
+			        
+			        \textbf{Arguments} (remaining):
+					\begin{itemize}
+					  \item \underline{offset} -- base \textbf{type}: \textit{uint64_t}
+					  \item \underline{size} -- base \textbf{type}: \textit{uint32_t}
+					  \item \underline{buffer} -- base \textbf{type}: \textit{void*}
+				    \end{itemize}
+				    
+					\textbf{Response}:
+					\begin{itemize}
+					  \item \textit{XrdCl::ChunkInfo}
+					\end{itemize}
+					
+				  \item \textbf{Close} -- close remote / local file
+				  
+				  	\textbf{Signature}:
+				  	\begin{itemize} 
+			          \item \textit{Close( XrdCl::File \&file );}
+			          \item \textit{Close( XrdCl::File *file );}
+			        \end{itemize}
+			    
+					\textbf{Response}:
+					\begin{itemize}
+					  \item \textit{void}
+					\end{itemize}
+					
+				  \item \textbf{Stat} -- stat the remote / local file
+				  
+				  	\textbf{Signature}:
+				  	\begin{itemize} 
+			          \item \textit{Stat( XrdCl::File \&file, \ldots);}
+			          \item \textit{Stat( XrdCl::File *file, \ldots );}
+			        \end{itemize}
+			        
+			        \textbf{Arguments} (remaining):
+					\begin{itemize}
+					  \item \underline{force} -- base \textbf{type}: \textit{bool}
+				    \end{itemize}
+				    
+					\textbf{Response}:
+					\begin{itemize}
+					  \item \textit{XrdCl::StatInfo}
+					\end{itemize}
+					
+				  \item \textbf{Write} -- write data to remote / local file
+				  
+				  	\textbf{Signature}:
+				  	\begin{itemize} 
+			          \item \textit{Write( XrdCl::File \&file, \ldots);}
+			          \item \textit{Write( XrdCl::File *file, \ldots );}
+			        \end{itemize}
+			        
+			        \textbf{Arguments} (remaining):
+					\begin{itemize}
+					  \item \underline{offset} -- base \textbf{type}: \textit{uint64_t}
+					  \item \underline{size} -- base \textbf{type}: \textit{uint32_t}
+					  \item \underline{buffer} -- base \textbf{type}: \textit{void*}
+				    \end{itemize}
+				    
+					\textbf{Response}:
+					\begin{itemize}
+					  \item \textit{void}
+					\end{itemize}
+					
+				  \item \textbf{Sync} -- sync the remote / local file
+				  
+				  	\textbf{Signature}:
+				  	\begin{itemize} 
+			          \item \textit{Sync( XrdCl::File \&file );}
+			          \item \textit{Sync( XrdCl::File *file );}
+			        \end{itemize}
+	
+					\textbf{Response}:
+					\begin{itemize}
+					  \item \textit{void}
+					\end{itemize}
+					
+				  \item \textbf{Truncate} -- truncate the remote / local file
+				  
+				  	\textbf{Signature}:
+				  	\begin{itemize} 
+			          \item \textit{Truncate( XrdCl::File \&file, \ldots);}
+			          \item \textit{Truncate( XrdCl::File *file, \ldots );}
+			        \end{itemize}
+			        
+			        \textbf{Arguments} (remaining):
+					\begin{itemize}
+					  \item \underline{size} -- base \textbf{type}: \textit{uint64_t}
+				    \end{itemize}
+				    
+					\textbf{Response}:
+					\begin{itemize}
+					  \item \textit{void}
+					\end{itemize}
+					
+				  \item \textbf{VectorRead} -- vector-read data from remote / local file
+				  
+				  	\textbf{Signature}:
+				  	\begin{itemize} 
+			          \item \textit{VectorRead( XrdCl::File \&file, \ldots);}
+			          \item \textit{VectorRead( XrdCl::File *file, \ldots );}
+			        \end{itemize}
+			        
+			        \textbf{Arguments} (remaining):
+					\begin{itemize}
+					  \item \underline{chunks} -- base \textbf{type}: \textit{XrdCl::ChunkList}
+					  \item \underline{buffer} -- base \textbf{type}: \textit{void*}
+				    \end{itemize}
+				    
+					\textbf{Response}:
+					\begin{itemize}
+					  \item \textit{XrdCl::ChunkList}
+					\end{itemize}
+					
+				  \item \textbf{VectorWrite} -- vector-write data to remote / local file
+				  
+				  	\textbf{Signature}:
+				  	\begin{itemize} 
+			          \item \textit{VectorWrite( XrdCl::File \&file, \ldots);}
+			          \item \textit{VectorWrite( XrdCl::File *file, \ldots );}
+			        \end{itemize}
+			        
+			        \textbf{Arguments} (remaining):
+					\begin{itemize}
+					  \item \underline{chunks} -- base \textbf{type}: \textit{XrdCl::ChunkList}
+				    \end{itemize}
+				    
+					\textbf{Response}:
+					\begin{itemize}
+					  \item \textit{void}
+					\end{itemize}
+					
+				  \item \textbf{WriteV} -- writev data to remote / local file
+				  
+				  	\textbf{Signature}:
+				  	\begin{itemize} 
+			          \item \textit{WriteV( XrdCl::File \&file, \ldots);}
+			          \item \textit{WriteV( XrdCl::File *file, \ldots );}
+			        \end{itemize}
+			        
+			        \textbf{Arguments} (remaining):
+					\begin{itemize}
+					  \item \underline{offset} -- base \textbf{type}: \textit{uint64_t}
+					  \item \underline{iov} -- base \textbf{type}: \textit{struct iovec*}
+					  \item \underline{iovcnt} -- base \textbf{type}: \textit{int}
+				    \end{itemize}
+				    
+					\textbf{Response}:
+					\begin{itemize}
+					  \item \textit{void}
+					\end{itemize}
+					
+				  \item \textbf{Fcntl} -- issue fcntl for remote / local file
+				  
+				  	\textbf{Signature}:
+				  	\begin{itemize} 
+			          \item \textit{Fcntl( XrdCl::File \&file, \ldots);}
+			          \item \textit{Fcntl( XrdCl::File *file, \ldots );}
+			        \end{itemize}
+			        
+			        \textbf{Arguments} (remaining):
+					\begin{itemize}
+					  \item \underline{arg} -- base \textbf{type}: \textit{XrdCl::Buffer}
+				    \end{itemize}
+				    
+					\textbf{Response}:
+					\begin{itemize}
+					  \item \textit{XrdCl::Buffer}
+					\end{itemize}
+					
+				  \item \textbf{Visa} -- issue fcntl for remote / local file
+				  
+				  	\textbf{Signature}:
+				  	\begin{itemize} 
+			          \item \textit{Visa( XrdCl::File \&file );}
+			          \item \textit{Visa( XrdCl::File *file );}
+			        \end{itemize}
+			        
+					\textbf{Response}:
+					\begin{itemize}
+					  \item \textit{XrdCl::Buffer}
+					\end{itemize}
+			        
+			\end{itemize}
+			
+	    \subsubsection{FileSystem Operations}
+	    
+	    	All arguments of any FileSystem Operation (except for the \textit{XrdCl::FileSystem} object itself) are \textbf{liftable to \textit{XrdCl::Fwd} and \textit{std::future}}.
+	    	
+	    
+	    \ldots		
 
 
 \end{document}
