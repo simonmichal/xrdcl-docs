@@ -1,0 +1,65 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Configuration File}{}% 2
+\BOOKMARK [1][-]{section.3}{Command line tools \(xrdcp/xrdfs\)}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{xrdcp - copy files}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{xrdfs - xrootd file and directory meta-data utility}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Return Codes}{section.3}% 6
+\BOOKMARK [1][-]{section.4}{Environment Variables}{}% 7
+\BOOKMARK [2][-]{subsection.4.1}{Categories}{section.4}% 8
+\BOOKMARK [2][-]{subsection.4.2}{Index of Environment Variables}{section.4}% 9
+\BOOKMARK [3][-]{subsubsection.4.2.1}{XRD\137APPNAME}{subsection.4.2}% 10
+\BOOKMARK [3][-]{subsubsection.4.2.2}{XRD\137CLIENTMONITOR}{subsection.4.2}% 11
+\BOOKMARK [3][-]{subsubsection.4.2.3}{XRD\137CLIENTMONITORPARAM}{subsection.4.2}% 12
+\BOOKMARK [3][-]{subsubsection.4.2.4}{XRD\137CONNECTIONWINDOW}{subsection.4.2}% 13
+\BOOKMARK [3][-]{subsubsection.4.2.5}{XRD\137CONNECTIONRETRY}{subsection.4.2}% 14
+\BOOKMARK [3][-]{subsubsection.4.2.6}{XRD\137CPCHUNKSIZE}{subsection.4.2}% 15
+\BOOKMARK [3][-]{subsubsection.4.2.7}{XRD\137CPINITTIMEOUT}{subsection.4.2}% 16
+\BOOKMARK [3][-]{subsubsection.4.2.8}{XRD\137CPPARALLELCHUNKS}{subsection.4.2}% 17
+\BOOKMARK [3][-]{subsubsection.4.2.9}{XRD\137CPTPCTIMEOUT}{subsection.4.2}% 18
+\BOOKMARK [3][-]{subsubsection.4.2.10}{XRD\137DATASERVERTTL}{subsection.4.2}% 19
+\BOOKMARK [3][-]{subsubsection.4.2.11}{XRD\137GLFNREDIRECTOR}{subsection.4.2}% 20
+\BOOKMARK [3][-]{subsubsection.4.2.12}{XRD\137LOADBALANCERTTL}{subsection.4.2}% 21
+\BOOKMARK [3][-]{subsubsection.4.2.13}{XRD\137LOCALMETALINKFILE}{subsection.4.2}% 22
+\BOOKMARK [3][-]{subsubsection.4.2.14}{XRD\137LOGFILE}{subsection.4.2}% 23
+\BOOKMARK [3][-]{subsubsection.4.2.15}{XRD\137LOGLEVEL}{subsection.4.2}% 24
+\BOOKMARK [3][-]{subsubsection.4.2.16}{XRD\137LOGMASK}{subsection.4.2}% 25
+\BOOKMARK [3][-]{subsubsection.4.2.17}{XRD\137MAXMETALINKWAIT}{subsection.4.2}% 26
+\BOOKMARK [3][-]{subsubsection.4.2.18}{XRD\137METALINKPROCESSING}{subsection.4.2}% 27
+\BOOKMARK [3][-]{subsubsection.4.2.19}{XRD\137NETWORKSTACK}{subsection.4.2}% 28
+\BOOKMARK [3][-]{subsubsection.4.2.20}{XRD\137NODELAY}{subsection.4.2}% 29
+\BOOKMARK [3][-]{subsubsection.4.2.21}{XRD\137OPENRECOVERY}{subsection.4.2}% 30
+\BOOKMARK [3][-]{subsubsection.4.2.22}{XRD\137PARALLELEVTLOOP}{subsection.4.2}% 31
+\BOOKMARK [3][-]{subsubsection.4.2.23}{XRD\137PLUGIN}{subsection.4.2}% 32
+\BOOKMARK [3][-]{subsubsection.4.2.24}{XRD\137PLUGINCONFDIR}{subsection.4.2}% 33
+\BOOKMARK [3][-]{subsubsection.4.2.25}{XRD\137POLLERPREFERENCE}{subsection.4.2}% 34
+\BOOKMARK [3][-]{subsubsection.4.2.26}{XRD\137PREFERIPV4}{subsection.4.2}% 35
+\BOOKMARK [3][-]{subsubsection.4.2.27}{XRD\137READRECOVERY}{subsection.4.2}% 36
+\BOOKMARK [3][-]{subsubsection.4.2.28}{XRD\137REDIRECTLIMIT}{subsection.4.2}% 37
+\BOOKMARK [3][-]{subsubsection.4.2.29}{XRD\137REQUESTTIMEOUT}{subsection.4.2}% 38
+\BOOKMARK [3][-]{subsubsection.4.2.30}{XRD\137RUNFORKHANDLER}{subsection.4.2}% 39
+\BOOKMARK [3][-]{subsubsection.4.2.31}{XRD\137STREAMERRORWINDOW}{subsection.4.2}% 40
+\BOOKMARK [3][-]{subsubsection.4.2.32}{XRD\137STREAMTIMEOUT}{subsection.4.2}% 41
+\BOOKMARK [3][-]{subsubsection.4.2.33}{XRD\137SUBSTREAMSPERCHANNEL}{subsection.4.2}% 42
+\BOOKMARK [3][-]{subsubsection.4.2.34}{XRD\137TCPKEEPALIVE}{subsection.4.2}% 43
+\BOOKMARK [3][-]{subsubsection.4.2.35}{XRD\137TCPKEEPALIVEINTERVAL}{subsection.4.2}% 44
+\BOOKMARK [3][-]{subsubsection.4.2.36}{XRD\137TCPKEEPALIVEPROBES}{subsection.4.2}% 45
+\BOOKMARK [3][-]{subsubsection.4.2.37}{XRD\137TCPKEEPALIVETIME}{subsection.4.2}% 46
+\BOOKMARK [3][-]{subsubsection.4.2.38}{XRD\137TIMEOUTRESOLUTION}{subsection.4.2}% 47
+\BOOKMARK [3][-]{subsubsection.4.2.39}{XRD\137WORKERTHREADS}{subsection.4.2}% 48
+\BOOKMARK [3][-]{subsubsection.4.2.40}{XRD\137WRITERECOVERY}{subsection.4.2}% 49
+\BOOKMARK [3][-]{subsubsection.4.2.41}{XRD\137XCPBLOCKSIZE}{subsection.4.2}% 50
+\BOOKMARK [2][-]{subsection.4.3}{Timeouts Explained}{section.4}% 51
+\BOOKMARK [3][-]{subsubsection.4.3.1}{Connection Window and Connection Retry}{subsection.4.3}% 52
+\BOOKMARK [3][-]{subsubsection.4.3.2}{Stream Timeout}{subsection.4.3}% 53
+\BOOKMARK [3][-]{subsubsection.4.3.3}{Stream Error Window}{subsection.4.3}% 54
+\BOOKMARK [3][-]{subsubsection.4.3.4}{RequestTimeout}{subsection.4.3}% 55
+\BOOKMARK [3][-]{subsubsection.4.3.5}{Time To Live}{subsection.4.3}% 56
+\BOOKMARK [3][-]{subsubsection.4.3.6}{How does it all come together?}{subsection.4.3}% 57
+\BOOKMARK [3][-]{subsubsection.4.3.7}{xrdcp / XrdCl::CopyProcess Third-Party-Copy timeouts}{subsection.4.3}% 58
+\BOOKMARK [1][-]{section.5}{Client Declarative API}{}% 59
+\BOOKMARK [2][-]{subsection.5.1}{Operation Utilities}{section.5}% 60
+\BOOKMARK [2][-]{subsection.5.2}{Operation Handlers}{section.5}% 61
+\BOOKMARK [2][-]{subsection.5.3}{Pipelining Semantics}{section.5}% 62
+\BOOKMARK [2][-]{subsection.5.4}{List of Operations}{section.5}% 63
+\BOOKMARK [3][-]{subsubsection.5.4.1}{File Operations}{subsection.5.4}% 64
+\BOOKMARK [3][-]{subsubsection.5.4.2}{FileSystem Operations}{subsection.5.4}% 65

@@ -1153,9 +1153,9 @@
         };
   
   FileSystem fs(url);
-  future<std::string> size = parse.get_future();
+  future<uint64_t> size = parse.get_future();
 
-  Async( Stat(fs,path) >> resp );
+  Async( Stat(fs,path) >> parse );
 
   // later on use size the same way as 
   // the future from previous example
@@ -1168,9 +1168,33 @@
 	
 	\subsection{Pipelining Semantics}
 	
-	examples on how to create and run pipelines
-	
-	\ldots
+	Operations can be pipelined using \textit{operator$\vert$}. In order to illustrate the pipelining semantics we will consider following scenario:
+	suppose one wants to read 1KB form a files, however the prerequisite for reading is creating a lock file. Now let us consider following code:
+
+\begin{lstlisting}[language=C++, xleftmargin=\dimexpr-\leftmargini]
+		
+  File lock, file;
+  FileSystem fs(url);
+  std::future<ChunkInfo> resp; // server response
+
+  auto &&p = Open(lock, "root://host//path/to/.lock", OpenFlags::New)
+           | Close(lock)
+           | Open(file, "root://host//path/to/file.txt",OpenFlags::Read) 
+           | Read(file,0,1024,buff) >> resp 
+           | Close(file);
+           | Rm(fs, "root://host//path/to/.lock");
+           
+  // we can already pass resp to an algorithm for processing
+
+  // we wait for the pipeline to complete
+  auto status = WaitFor( p );
+  
+\end{lstlisting}
+
+    In lines 6-7 the lock file is being created. Afterwards, in lines 8-10 the pipeline continues: it does an open, a read and a close on the actual file. Finally, 
+    in line 11 the lock file is being deleted. Note that if an operation on the pipeline fails subsequent operations in the pipeline wont be executed, however their 
+    handlers will be called with an error status of \textit{errPipelineFailed} (in order to allow for a clean up if necessary).
+    Using the pipelining API makes the source code more coherent and the control flow more  explicit.
 	
 	\subsection{List of Operations}
 	\label{sec:lsop}
@@ -1710,7 +1734,7 @@
 
                     \textbf{Arguments} (remaining):
                     \begin{itemize}
-                        \item \underline{fileList} -- base \textbf{type}: \textit{std::vector<std::string>}
+                        \item \underline{fileList} -- base \textbf{type}: \textit{std::vector$<$std::string$>$}
                         \item \underline{flags} -- base \textbf{type}: \textit{XrdCl::PrepareFlags::Flags}
                         \item \underline{priority} -- base \textbf{type}: \textit{uint8_t}
                     \end{itemize}
