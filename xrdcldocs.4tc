@@ -1,0 +1,67 @@
+\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi
+\doTocEntry\toclikesection{}{\csname a:TocLink\endcsname{1}{x1-1000}{QQ2-1-1}{Contents}}{4}\relax 
+\doTocEntry\tocsection{1}{\csname a:TocLink\endcsname{1}{x1-20001}{QQ2-1-2}{Introduction}}{6}\relax 
+\doTocEntry\tocsection{2}{\csname a:TocLink\endcsname{1}{x1-30002}{QQ2-1-3}{Configuration File}}{6}\relax 
+\doTocEntry\tocsection{3}{\csname a:TocLink\endcsname{1}{x1-40003}{QQ2-1-4}{Command line tools (xrdcp/xrdfs)}}{7}\relax 
+\doTocEntry\tocsubsection{3.1}{\csname a:TocLink\endcsname{1}{x1-50003.1}{QQ2-1-5}{xrdcp - copy files}}{7}\relax 
+\doTocEntry\tocsubsection{3.2}{\csname a:TocLink\endcsname{1}{x1-60003.2}{QQ2-1-6}{xrdfs - xrootd file and directory meta-data utility}}{11}\relax 
+\doTocEntry\tocsubsection{3.3}{\csname a:TocLink\endcsname{1}{x1-70003.3}{QQ2-1-7}{Return Codes}}{15}\relax 
+\doTocEntry\tocsection{4}{\csname a:TocLink\endcsname{1}{x1-80004}{QQ2-1-8}{Environment Variables}}{16}\relax 
+\doTocEntry\tocsubsection{4.1}{\csname a:TocLink\endcsname{1}{x1-90004.1}{QQ2-1-9}{Categories}}{16}\relax 
+\doTocEntry\tocsubsection{4.2}{\csname a:TocLink\endcsname{1}{x1-100004.2}{QQ2-1-10}{Index of Environment Variables}}{18}\relax 
+\doTocEntry\tocsubsubsection{4.2.1}{\csname a:TocLink\endcsname{1}{x1-110004.2.1}{QQ2-1-11}{XRD_APPNAME}}{18}\relax 
+\doTocEntry\tocsubsubsection{4.2.2}{\csname a:TocLink\endcsname{1}{x1-120004.2.2}{QQ2-1-12}{XRD_CLIENTMONITOR}}{18}\relax 
+\doTocEntry\tocsubsubsection{4.2.3}{\csname a:TocLink\endcsname{1}{x1-130004.2.3}{QQ2-1-13}{XRD_CLIENTMONITORPARAM}}{18}\relax 
+\doTocEntry\tocsubsubsection{4.2.4}{\csname a:TocLink\endcsname{1}{x1-140004.2.4}{QQ2-1-14}{XRD_CONNECTIONWINDOW}}{18}\relax 
+\doTocEntry\tocsubsubsection{4.2.5}{\csname a:TocLink\endcsname{1}{x1-150004.2.5}{QQ2-1-15}{XRD_CONNECTIONRETRY}}{19}\relax 
+\doTocEntry\tocsubsubsection{4.2.6}{\csname a:TocLink\endcsname{1}{x1-160004.2.6}{QQ2-1-16}{XRD_CPCHUNKSIZE}}{19}\relax 
+\doTocEntry\tocsubsubsection{4.2.7}{\csname a:TocLink\endcsname{1}{x1-170004.2.7}{QQ2-1-17}{XRD_CPINITTIMEOUT}}{19}\relax 
+\doTocEntry\tocsubsubsection{4.2.8}{\csname a:TocLink\endcsname{1}{x1-180004.2.8}{QQ2-1-18}{XRD_CPPARALLELCHUNKS}}{19}\relax 
+\doTocEntry\tocsubsubsection{4.2.9}{\csname a:TocLink\endcsname{1}{x1-190004.2.9}{QQ2-1-19}{XRD_CPTPCTIMEOUT}}{19}\relax 
+\doTocEntry\tocsubsubsection{4.2.10}{\csname a:TocLink\endcsname{1}{x1-200004.2.10}{QQ2-1-20}{XRD_DATASERVERTTL}}{19}\relax 
+\doTocEntry\tocsubsubsection{4.2.11}{\csname a:TocLink\endcsname{1}{x1-210004.2.11}{QQ2-1-21}{XRD_GLFNREDIRECTOR}}{19}\relax 
+\doTocEntry\tocsubsubsection{4.2.12}{\csname a:TocLink\endcsname{1}{x1-220004.2.12}{QQ2-1-22}{XRD_LOADBALANCERTTL}}{20}\relax 
+\doTocEntry\tocsubsubsection{4.2.13}{\csname a:TocLink\endcsname{1}{x1-230004.2.13}{QQ2-1-23}{XRD_LOCALMETALINKFILE}}{20}\relax 
+\doTocEntry\tocsubsubsection{4.2.14}{\csname a:TocLink\endcsname{1}{x1-240004.2.14}{QQ2-1-24}{XRD_LOGFILE}}{20}\relax 
+\doTocEntry\tocsubsubsection{4.2.15}{\csname a:TocLink\endcsname{1}{x1-250004.2.15}{QQ2-1-25}{XRD_LOGLEVEL}}{20}\relax 
+\doTocEntry\tocsubsubsection{4.2.16}{\csname a:TocLink\endcsname{1}{x1-260004.2.16}{QQ2-1-26}{XRD_LOGMASK}}{20}\relax 
+\doTocEntry\tocsubsubsection{4.2.17}{\csname a:TocLink\endcsname{1}{x1-270004.2.17}{QQ2-1-27}{XRD_MAXMETALINKWAIT}}{21}\relax 
+\doTocEntry\tocsubsubsection{4.2.18}{\csname a:TocLink\endcsname{1}{x1-280004.2.18}{QQ2-1-28}{XRD_METALINKPROCESSING}}{21}\relax 
+\doTocEntry\tocsubsubsection{4.2.19}{\csname a:TocLink\endcsname{1}{x1-290004.2.19}{QQ2-1-29}{XRD_NETWORKSTACK}}{21}\relax 
+\doTocEntry\tocsubsubsection{4.2.20}{\csname a:TocLink\endcsname{1}{x1-300004.2.20}{QQ2-1-30}{XRD_NODELAY}}{22}\relax 
+\doTocEntry\tocsubsubsection{4.2.21}{\csname a:TocLink\endcsname{1}{x1-310004.2.21}{QQ2-1-31}{XRD_OPENRECOVERY}}{22}\relax 
+\doTocEntry\tocsubsubsection{4.2.22}{\csname a:TocLink\endcsname{1}{x1-320004.2.22}{QQ2-1-32}{XRD_PARALLELEVTLOOP}}{22}\relax 
+\doTocEntry\tocsubsubsection{4.2.23}{\csname a:TocLink\endcsname{1}{x1-330004.2.23}{QQ2-1-33}{XRD_PLUGIN}}{22}\relax 
+\doTocEntry\tocsubsubsection{4.2.24}{\csname a:TocLink\endcsname{1}{x1-340004.2.24}{QQ2-1-34}{XRD_PLUGINCONFDIR}}{22}\relax 
+\doTocEntry\tocsubsubsection{4.2.25}{\csname a:TocLink\endcsname{1}{x1-350004.2.25}{QQ2-1-35}{XRD_POLLERPREFERENCE}}{22}\relax 
+\doTocEntry\tocsubsubsection{4.2.26}{\csname a:TocLink\endcsname{1}{x1-360004.2.26}{QQ2-1-36}{XRD_PREFERIPV4}}{22}\relax 
+\doTocEntry\tocsubsubsection{4.2.27}{\csname a:TocLink\endcsname{1}{x1-370004.2.27}{QQ2-1-37}{XRD_READRECOVERY}}{23}\relax 
+\doTocEntry\tocsubsubsection{4.2.28}{\csname a:TocLink\endcsname{1}{x1-380004.2.28}{QQ2-1-38}{XRD_REDIRECTLIMIT}}{23}\relax 
+\doTocEntry\tocsubsubsection{4.2.29}{\csname a:TocLink\endcsname{1}{x1-390004.2.29}{QQ2-1-39}{XRD_REQUESTTIMEOUT}}{23}\relax 
+\doTocEntry\tocsubsubsection{4.2.30}{\csname a:TocLink\endcsname{1}{x1-400004.2.30}{QQ2-1-40}{XRD_RUNFORKHANDLER}}{23}\relax 
+\doTocEntry\tocsubsubsection{4.2.31}{\csname a:TocLink\endcsname{1}{x1-410004.2.31}{QQ2-1-41}{XRD_STREAMERRORWINDOW}}{23}\relax 
+\doTocEntry\tocsubsubsection{4.2.32}{\csname a:TocLink\endcsname{1}{x1-420004.2.32}{QQ2-1-42}{XRD_STREAMTIMEOUT}}{23}\relax 
+\doTocEntry\tocsubsubsection{4.2.33}{\csname a:TocLink\endcsname{1}{x1-430004.2.33}{QQ2-1-43}{XRD_SUBSTREAMSPERCHANNEL}}{24}\relax 
+\doTocEntry\tocsubsubsection{4.2.34}{\csname a:TocLink\endcsname{1}{x1-440004.2.34}{QQ2-1-44}{XRD_TCPKEEPALIVE}}{24}\relax 
+\doTocEntry\tocsubsubsection{4.2.35}{\csname a:TocLink\endcsname{1}{x1-450004.2.35}{QQ2-1-45}{XRD_TCPKEEPALIVEINTERVAL}}{24}\relax 
+\doTocEntry\tocsubsubsection{4.2.36}{\csname a:TocLink\endcsname{1}{x1-460004.2.36}{QQ2-1-46}{XRD_TCPKEEPALIVEPROBES}}{24}\relax 
+\doTocEntry\tocsubsubsection{4.2.37}{\csname a:TocLink\endcsname{1}{x1-470004.2.37}{QQ2-1-47}{XRD_TCPKEEPALIVETIME}}{24}\relax 
+\doTocEntry\tocsubsubsection{4.2.38}{\csname a:TocLink\endcsname{1}{x1-480004.2.38}{QQ2-1-48}{XRD_TIMEOUTRESOLUTION}}{24}\relax 
+\doTocEntry\tocsubsubsection{4.2.39}{\csname a:TocLink\endcsname{1}{x1-490004.2.39}{QQ2-1-49}{XRD_WORKERTHREADS}}{24}\relax 
+\doTocEntry\tocsubsubsection{4.2.40}{\csname a:TocLink\endcsname{1}{x1-500004.2.40}{QQ2-1-50}{XRD_WRITERECOVERY}}{25}\relax 
+\doTocEntry\tocsubsubsection{4.2.41}{\csname a:TocLink\endcsname{1}{x1-510004.2.41}{QQ2-1-51}{XRD_XCPBLOCKSIZE}}{25}\relax 
+\doTocEntry\tocsubsection{4.3}{\csname a:TocLink\endcsname{1}{x1-520004.3}{QQ2-1-52}{Timeouts Explained}}{25}\relax 
+\doTocEntry\tocsubsubsection{4.3.1}{\csname a:TocLink\endcsname{1}{x1-530004.3.1}{QQ2-1-53}{Connection Window and Connection Retry}}{25}\relax 
+\doTocEntry\tocsubsubsection{4.3.2}{\csname a:TocLink\endcsname{1}{x1-540004.3.2}{QQ2-1-54}{Stream Timeout}}{26}\relax 
+\doTocEntry\tocsubsubsection{4.3.3}{\csname a:TocLink\endcsname{1}{x1-550004.3.3}{QQ2-1-55}{Stream Error Window}}{26}\relax 
+\doTocEntry\tocsubsubsection{4.3.4}{\csname a:TocLink\endcsname{1}{x1-560004.3.4}{QQ2-1-56}{RequestTimeout}}{26}\relax 
+\doTocEntry\tocsubsubsection{4.3.5}{\csname a:TocLink\endcsname{1}{x1-570004.3.5}{QQ2-1-57}{Time To Live}}{27}\relax 
+\doTocEntry\tocsubsubsection{4.3.6}{\csname a:TocLink\endcsname{1}{x1-580004.3.6}{QQ2-1-58}{How does it all come together?}}{27}\relax 
+\doTocEntry\tocsubsubsection{4.3.7}{\csname a:TocLink\endcsname{1}{x1-590004.3.7}{QQ2-1-59}{xrdcp / XrdCl::CopyProcess Third-Party-Copy timeouts}}{28}\relax 
+\doTocEntry\tocsection{5}{\csname a:TocLink\endcsname{1}{x1-600005}{QQ2-1-60}{Client Declarative API}}{29}\relax 
+\doTocEntry\tocsubsection{5.1}{\csname a:TocLink\endcsname{1}{x1-610005.1}{QQ2-1-61}{Operation Utilities}}{29}\relax 
+\doTocEntry\tocsubsection{5.2}{\csname a:TocLink\endcsname{1}{x1-620005.2}{QQ2-1-62}{Operation Handlers}}{30}\relax 
+\doTocEntry\tocsubsection{5.3}{\csname a:TocLink\endcsname{1}{x1-630005.3}{QQ2-1-63}{Pipelining Semantics}}{32}\relax 
+\doTocEntry\tocsubsection{5.4}{\csname a:TocLink\endcsname{1}{x1-640005.4}{QQ2-1-64}{List of Operations}}{32}\relax 
+\doTocEntry\tocsubsubsection{5.4.1}{\csname a:TocLink\endcsname{1}{x1-650005.4.1}{QQ2-1-65}{File Operations}}{33}\relax 
+\doTocEntry\tocsubsubsection{5.4.2}{\csname a:TocLink\endcsname{1}{x1-660005.4.2}{QQ2-1-66}{FileSystem Operations}}{37}\relax 
