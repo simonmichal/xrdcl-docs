@@ -1,14 +1,14 @@
+1
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
   "http://www.w3.org/TR/html4/loose.dtd">  
 <html > 
-<head><title>
-XRootD Client Configuration &amp; API Reference</title> 
+<head><title></title> 
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
 <meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
 <!-- html --> 
 <meta name="src" content="xrdcldocs.tex"> 
-<meta name="date" content="2019-03-08 14:38:00"> 
+<meta name="date" content="2019-03-08 15:03:00"> 
 <link rel="stylesheet" type="text/css" href="xrdcldocs.css"> 
 </head><body 
 >
@@ -23,19 +23,20 @@ XRootD Client Configuration &amp; API Reference</title>
 <h2 class="titleHead"><img 
 src="xrootd-logo.png" alt="PIC"  
 ><br />
-XRootD Client Configuration &amp;
+ XRootD Client Configuration &amp;
 API Reference</h2>
-    <div class="author" ><span 
+   <div class="author" > <span 
 class="cmr-9">March 8, 2019</span>
 <br /><span 
 class="cmr-9">Release 4.9.0 and above</span>
 <br /> <span 
 class="cmr-9">Michal Simon (CERN)</span>
 <br />       <img 
-src="cern-logo.png" alt="PIC"  
+src="cern-logo.png" alt="PIC" height="150" width="150"
 ></div><br />
 <div class="date" ></div>
    </div>
+<!--l. 50--><p class="indent" >
                                                                   
 
                                                                   
@@ -176,18 +177,18 @@ href="#x1-650005.4.1" id="QQ2-1-65">File Operations</a></span>
 <br />   &#x00A0;&#x00A0;<span class="subsubsectionToc" >5.4.2 <a 
 href="#x1-660005.4.2" id="QQ2-1-66">FileSystem Operations</a></span>
    </div>
-<!--l. 71--><p class="indent" >
+<!--l. 54--><p class="indent" >
                                                                   
 
                                                                   
    <h3 class="sectionHead"><span class="titlemark">1   </span> <a 
  id="x1-20001"></a>Introduction</h3>
-<!--l. 75--><p class="noindent" >This document describes the client (<span 
+<!--l. 58--><p class="noindent" >This document describes the client (<span 
 class="cmbxti-10">XrdCl</span>) component of XRootD framework. In
 particular it focuses on configuration options of the client (configuration file,
 environment variables, parameters) and on how they interact with each
 other.
-<!--l. 79--><p class="indent" >   <span 
+<!--l. 62--><p class="indent" >   <span 
 class="cmbxti-10">XrdCl </span>is a multi-threaded C++ implementation of XRootD client based on an
 <span 
 class="cmti-10">event-loop</span>, and is provided by the <span 
@@ -211,7 +212,7 @@ class="cmti-10">XrdCl </span>can be
 tuned using a configuration file, environment variables or <span 
 class="cmti-10">XrdCl::DefaultEnv</span>
 utility.
-<!--l. 88--><p class="indent" >   Low level connection handling is hidden from the user. Once a request is issued a
+<!--l. 71--><p class="indent" >   Low level connection handling is hidden from the user. Once a request is issued a
 connection between the client and the server will be established automatically, the
 connection will be kept alive for further reuse until TTL timeout elapses. By default
 <span 
@@ -226,7 +227,7 @@ server will send a list of acceptable authentication methods, e.g. <span
 class="cmti-10">krb5</span>, <span 
 class="cmti-10">gsi</span>,
 etc.).
-<!--l. 96--><p class="indent" >   The <span 
+<!--l. 79--><p class="indent" >   The <span 
 class="cmbx-10">XrdCl </span>library is the base for following components: the command
 line interface (<span 
 class="cmti-10">xrdcp </span>and <span 
@@ -235,13 +236,13 @@ href="http://xrootd.org/doc/python/xrootd-python/" >python bindings</a>, <a
 href="http://xrootd.org/doc/dev49/ssi_reference-V2.htm" >SSI client</a> and the <a 
 href="http://xrootd.org/doc/dev49/pss_config.htm#_Toc525070693" >Posix
 API</a>.
-<!--l. 100--><p class="indent" >   In addition, this document, in the last section, describes the new declarative client
+<!--l. 83--><p class="indent" >   In addition, this document, in the last section, describes the new declarative client
 API introduced in <span 
 class="cmbx-10">version 4.9.0</span>.
-<!--l. 102--><p class="noindent" >
+<!--l. 85--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">2   </span> <a 
  id="x1-30002"></a>Configuration File</h3>
-<!--l. 104--><p class="noindent" >This section describes the XRootD client configuration file. By default XRootD client
+<!--l. 87--><p class="noindent" >This section describes the XRootD client configuration file. By default XRootD client
 will use the global config file: <span 
 class="cmti-10">/ets/xrootd/client.conf</span>. However, those settings migh be
 overwritten by the user specific config file: <span 
@@ -265,7 +266,7 @@ class="cmsy-10">~</span>/.xrootd/client.plugins.d/,
      </li>
      <li class="itemize">and at a location pointed to by: <a 
 href="#x1-340004.2.24">XRD&#x02D9;PLUGINCONFDIR</a></li></ul>
-<!--l. 117--><p class="noindent" >An XRootD client plug-in configuration file should a contain following key-value
+<!--l. 100--><p class="noindent" >An XRootD client plug-in configuration file should a contain following key-value
 pairs:
      <ul class="itemize1">
      <li class="itemize"><span 
@@ -279,11 +280,11 @@ class="cmbx-10">lib </span>followed by a path to the library implementing given 
 class="cmbx-10">enable </span>followed by <span 
 class="cmti-10">true </span>or <span 
 class="cmti-10">false</span></li></ul>
-<!--l. 123--><p class="noindent" >For example the following config file defines a plug-in for <span 
+<!--l. 106--><p class="noindent" >For example the following config file defines a plug-in for <span 
 class="cmti-10">host.domain.edu </span>endpoint (root
 protocol is being assumed) and <span 
 class="cmti-10">http </span>protocol:
-   <!--l. 126-->
+   <!--l. 109-->
 <div class="lstlisting" id="listing-1"><span class="label"><a 
  id="x1-3001r1"></a><span 
 class="cmr-5">1</span></span><span 
@@ -341,19 +342,19 @@ class="cmr-5">4</span></span><span
 class="cmr-8">&#x00A0;</span><span 
 class="cmr-8">&#x00A0;</span>
    </div>
-<!--l. 133--><p class="noindent" >
+<!--l. 116--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">3   </span> <a 
  id="x1-40003"></a>Command line tools (xrdcp/xrdfs)</h3>
-<!--l. 135--><p class="noindent" >
+<!--l. 118--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">3.1   </span> <a 
  id="x1-50003.1"></a>xrdcp - copy files</h4>
-<!--l. 137--><p class="noindent" ><span 
+<!--l. 120--><p class="noindent" ><span 
 class="cmbx-10">xrdcp </span>[options] source destination <br 
 class="newline" />
-<!--l. 139--><p class="noindent" ><span 
+<!--l. 122--><p class="noindent" ><span 
 class="cmbx-10">DESCRIPTION </span><br 
 class="newline" />
-<!--l. 141--><p class="noindent" >The <span 
+<!--l. 124--><p class="noindent" >The <span 
 class="cmbx-10">xrdcp </span>utility copies one or more files from one location to another. The data
 source and destination may be a local or remote file or directory. Additionally, the
 data source may also reside on multiple servers. <br 
@@ -361,10 +362,10 @@ class="newline" />
                                                                   
 
                                                                   
-<!--l. 145--><p class="noindent" ><span 
+<!--l. 128--><p class="noindent" ><span 
 class="cmbx-10">OPTIONS </span><br 
 class="newline" />
-<!--l. 147--><p class="noindent" ><span 
+<!--l. 130--><p class="noindent" ><span 
 class="cmbx-10">-C </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
@@ -372,119 +373,119 @@ class="cmbx-10">cksum </span><span class="underline">type</span> [<span
 class="cmbx-10">:</span><span class="underline">value</span> <span 
 class="cmsy-10">|</span><span class="underline">print</span> <span 
 class="cmsy-10">|</span><span class="underline">source</span>]
-<!--l. 149--><p class="noindent" >Obtains the checksum of <span class="underline">type</span> (i.e. adler32, crc32, or md5) from the source,
+<!--l. 132--><p class="noindent" >Obtains the checksum of <span class="underline">type</span> (i.e. adler32, crc32, or md5) from the source,
 computes the checksum at the destination, and verifies that they are the
 same. If a <span class="underline">value</span> is specified, it is used as the source checksum. When <span class="underline">print</span>
 is specified, the checksum at the destination is printed but is <span class="underline">not</span> verified.
 <br 
 class="newline" />
-<!--l. 154--><p class="noindent" ><span 
+<!--l. 137--><p class="noindent" ><span 
 class="cmbx-10">-d </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">debug </span><span class="underline">lvl</span>
-<!--l. 156--><p class="noindent" >Debug level: 1 (low), 2 (medium), 3 (high). <br 
+<!--l. 139--><p class="noindent" >Debug level: 1 (low), 2 (medium), 3 (high). <br 
 class="newline" />
-<!--l. 158--><p class="noindent" ><span 
+<!--l. 141--><p class="noindent" ><span 
 class="cmbx-10">-F </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">coerce</span>
-<!--l. 160--><p class="noindent" >Ignores locking semantics on the destination file. This option may lead to file
+<!--l. 143--><p class="noindent" >Ignores locking semantics on the destination file. This option may lead to file
 corruption if not properly used. <br 
 class="newline" />
-<!--l. 163--><p class="noindent" ><span 
+<!--l. 146--><p class="noindent" ><span 
 class="cmbx-10">-f </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">force</span>
-<!--l. 165--><p class="noindent" >Re-creates a file if it is already present. <br 
+<!--l. 148--><p class="noindent" >Re-creates a file if it is already present. <br 
 class="newline" />
-<!--l. 167--><p class="noindent" ><span 
+<!--l. 150--><p class="noindent" ><span 
 class="cmbx-10">-h </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">help</span>
-<!--l. 169--><p class="noindent" >Displays usage information. <br 
+<!--l. 152--><p class="noindent" >Displays usage information. <br 
 class="newline" />
-<!--l. 171--><p class="noindent" ><span 
+<!--l. 154--><p class="noindent" ><span 
 class="cmbx-10">-H </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">license</span>
-<!--l. 173--><p class="noindent" >Displays license terms and conditions. <br 
+<!--l. 156--><p class="noindent" >Displays license terms and conditions. <br 
 class="newline" />
-<!--l. 175--><p class="noindent" ><span 
+<!--l. 158--><p class="noindent" ><span 
 class="cmbx-10">-N </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">nopbar</span>
-<!--l. 177--><p class="noindent" >Does not display the progress bar. <br 
+<!--l. 160--><p class="noindent" >Does not display the progress bar. <br 
 class="newline" />
-<!--l. 179--><p class="noindent" ><span 
+<!--l. 162--><p class="noindent" ><span 
 class="cmbx-10">-P </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">posc</span>
-<!--l. 181--><p class="noindent" >Requests POSC (persist-on-successful-close) processing to create a new file. Files are
+<!--l. 164--><p class="noindent" >Requests POSC (persist-on-successful-close) processing to create a new file. Files are
 automatically deleted should they not be successfully closed. <br 
 class="newline" />
-<!--l. 185--><p class="noindent" ><span 
+<!--l. 168--><p class="noindent" ><span 
 class="cmbx-10">-D </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">proxy </span><span class="underline">proxyaddr</span><span 
 class="cmbx-10">:</span><span class="underline">proxyport</span> [NOT YET IMPLEMENTED]
-<!--l. 187--><p class="noindent" >Use <span class="underline">proxyaddr</span><span 
+<!--l. 170--><p class="noindent" >Use <span class="underline">proxyaddr</span><span 
 class="cmbx-10">:</span><span class="underline">proxyport</span> as a SOCKS4 proxy. Only numerical addresses are
 supported. <br 
 class="newline" />
-<!--l. 189--><p class="noindent" ><span 
+<!--l. 172--><p class="noindent" ><span 
 class="cmbx-10">-r </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">recursive</span>
-<!--l. 191--><p class="noindent" >Recursively copy all files starting at the given source directory. <br 
+<!--l. 174--><p class="noindent" >Recursively copy all files starting at the given source directory. <br 
 class="newline" />
-<!--l. 193--><p class="noindent" ><span 
+<!--l. 176--><p class="noindent" ><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">server</span>
-<!--l. 195--><p class="noindent" >Runs as if in a server environment. Used only for server-side third party copy
+<!--l. 178--><p class="noindent" >Runs as if in a server environment. Used only for server-side third party copy
 support. <br 
 class="newline" />
-<!--l. 198--><p class="noindent" ><span 
+<!--l. 181--><p class="noindent" ><span 
 class="cmbx-10">-s </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">silent</span>
-<!--l. 200--><p class="noindent" >Neither produces summary information nor displays the progress bar. <br 
+<!--l. 183--><p class="noindent" >Neither produces summary information nor displays the progress bar. <br 
 class="newline" />
                                                                   
 
                                                                   
-<!--l. 202--><p class="noindent" ><span 
+<!--l. 185--><p class="noindent" ><span 
 class="cmbx-10">-y </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">sources </span><span class="underline">num</span>
-<!--l. 204--><p class="noindent" >Uses up to <span class="underline">num</span> sources to copy the file. <br 
+<!--l. 187--><p class="noindent" >Uses up to <span class="underline">num</span> sources to copy the file. <br 
 class="newline" />
-<!--l. 206--><p class="noindent" ><span 
+<!--l. 189--><p class="noindent" ><span 
 class="cmbx-10">-S </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">streams </span><span class="underline">num</span>
-<!--l. 208--><p class="noindent" >Uses <span class="underline">num</span> additional parallel streams to do the transfer. The maximum value is 15.
+<!--l. 191--><p class="noindent" >Uses <span class="underline">num</span> additional parallel streams to do the transfer. The maximum value is 15.
 The default is 0 (i.e., use only the main stream). <br 
 class="newline" />
-<!--l. 211--><p class="noindent" ><span 
+<!--l. 194--><p class="noindent" ><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">tpc </span>[<span 
 class="cmbx-10">delegate</span>] <span 
 class="cmbx-10">first </span><span 
 class="cmsy-10">| </span><span 
 class="cmbx-10">only</span>
-<!--l. 213--><p class="noindent" >Copies the file from remote server to remote server using third-party-copy protocol
+<!--l. 196--><p class="noindent" >Copies the file from remote server to remote server using third-party-copy protocol
 (i.e., data flows from server to server). The source and destination servers must
 support third party copies. Additional security restrictions may apply and may cause
 the copy to fail if they cannot be satisfied. Argument &#8217;<span 
@@ -498,169 +499,169 @@ source server. Delegation is ignored if the target server is not configured to
 use delegated credentials. Currently, only gsi credentials can be delegated.
 <br 
 class="newline" />
-<!--l. 224--><p class="noindent" ><span 
+<!--l. 207--><p class="noindent" ><span 
 class="cmbx-10">-v </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">verbose</span>
-<!--l. 226--><p class="noindent" >Displays summary output. <br 
+<!--l. 209--><p class="noindent" >Displays summary output. <br 
 class="newline" />
-<!--l. 228--><p class="noindent" ><span 
+<!--l. 211--><p class="noindent" ><span 
 class="cmbx-10">-V </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">version</span>
-<!--l. 230--><p class="noindent" >Displays version information and immediately exits. <br 
+<!--l. 213--><p class="noindent" >Displays version information and immediately exits. <br 
 class="newline" />
-<!--l. 232--><p class="noindent" ><span 
+<!--l. 215--><p class="noindent" ><span 
 class="cmbx-10">-z </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">zip </span><span class="underline">file</span>
-<!--l. 234--><p class="noindent" >Copy given file from a ZIP archive (same as xrdcl.unzip opaque info). <br 
+<!--l. 217--><p class="noindent" >Copy given file from a ZIP archive (same as xrdcl.unzip opaque info). <br 
 class="newline" />
-<!--l. 236--><p class="noindent" ><span 
+<!--l. 219--><p class="noindent" ><span 
 class="cmbx-10">-X </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">xrate </span><span class="underline">rate</span> [NOT YET IMPLEMENTED]
-<!--l. 238--><p class="noindent" >Limits the copy speed to the specified <span class="underline">rate</span>. The rate may be qualified with the letter
+<!--l. 221--><p class="noindent" >Limits the copy speed to the specified <span class="underline">rate</span>. The rate may be qualified with the letter
 <span 
 class="cmbx-10">k</span>, <span 
 class="cmbx-10">m</span>, or <span 
 class="cmbx-10">g </span>to indicate kilo, mega, or giga bytes, respectively. The option only applies
 when the source or destination is local. <br 
 class="newline" />
-<!--l. 243--><p class="noindent" ><span 
+<!--l. 226--><p class="noindent" ><span 
 class="cmbx-10">-Z </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">dynamic-src</span>
-<!--l. 245--><p class="noindent" >File size may change during the copy. <br 
+<!--l. 228--><p class="noindent" >File size may change during the copy. <br 
 class="newline" />
-<!--l. 247--><p class="noindent" ><span 
+<!--l. 230--><p class="noindent" ><span 
 class="cmbx-10">-I </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">infiles </span><span class="underline">fn</span>
-<!--l. 249--><p class="noindent" >Specifies the file that contains a list of input files. <br 
+<!--l. 232--><p class="noindent" >Specifies the file that contains a list of input files. <br 
 class="newline" />
-<!--l. 251--><p class="noindent" ><span 
+<!--l. 234--><p class="noindent" ><span 
 class="cmbx-10">-p </span><span 
 class="cmsy-10">| </span><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">path</span>
-<!--l. 253--><p class="noindent" >Automatically create remote destination path. <br 
+<!--l. 236--><p class="noindent" >Automatically create remote destination path. <br 
 class="newline" />
-<!--l. 255--><p class="noindent" ><span 
+<!--l. 238--><p class="noindent" ><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">parallel </span><span class="underline">n</span>
-<!--l. 257--><p class="noindent" >Number of copy jobs to be run simultaneously. <br 
+<!--l. 240--><p class="noindent" >Number of copy jobs to be run simultaneously. <br 
 class="newline" />
-<!--l. 259--><p class="noindent" ><span 
+<!--l. 242--><p class="noindent" ><span 
 class="cmtt-10">--</span><span 
 class="cmbx-10">allow-http</span>
                                                                   
 
                                                                   
-<!--l. 261--><p class="noindent" >Allow HTTP as source or destination protocol. Requires the XrdClHttp client plugin.
+<!--l. 244--><p class="noindent" >Allow HTTP as source or destination protocol. Requires the XrdClHttp client plugin.
 <br 
 class="newline" />
-<!--l. 263--><p class="noindent" ><span 
+<!--l. 246--><p class="noindent" ><span 
 class="cmbx-10">LEGACY OPTIONS </span><br 
 class="newline" />
-<!--l. 265--><p class="noindent" >Legacy options are provided for backward compatability. These are now deprecated
+<!--l. 248--><p class="noindent" >Legacy options are provided for backward compatability. These are now deprecated
 and should be avoided. <br 
 class="newline" />
-<!--l. 268--><p class="noindent" ><span 
+<!--l. 251--><p class="noindent" ><span 
 class="cmbx-10">-adler</span>
-<!--l. 270--><p class="noindent" >Equivalent to &#8221;<span 
+<!--l. 253--><p class="noindent" >Equivalent to &#8221;<span 
 class="cmbx-10">&#8211;cksum adler32:source</span>&#8221;. <br 
 class="newline" />
-<!--l. 272--><p class="noindent" ><span 
+<!--l. 255--><p class="noindent" ><span 
 class="cmbx-10">-DI </span><span class="underline">pname</span> <span class="underline">numberval</span>
-<!--l. 274--><p class="noindent" >Set the internal parameter <span class="underline">pname</span> with the numeric value <span class="underline">numberval</span>. <br 
+<!--l. 257--><p class="noindent" >Set the internal parameter <span class="underline">pname</span> with the numeric value <span class="underline">numberval</span>. <br 
 class="newline" />
-<!--l. 276--><p class="noindent" ><span 
+<!--l. 259--><p class="noindent" ><span 
 class="cmbx-10">-DS </span><span class="underline">pname</span> <span class="underline">stringval</span>
-<!--l. 278--><p class="noindent" >Set the internal parameter <span class="underline">pname</span> with the string value <span class="underline">stringval</span>. <br 
+<!--l. 261--><p class="noindent" >Set the internal parameter <span class="underline">pname</span> with the string value <span class="underline">stringval</span>. <br 
 class="newline" />
-<!--l. 280--><p class="noindent" ><span 
+<!--l. 263--><p class="noindent" ><span 
 class="cmbx-10">-md5</span>
-<!--l. 282--><p class="noindent" >Equivalent to &#8221;<span 
+<!--l. 265--><p class="noindent" >Equivalent to &#8221;<span 
 class="cmbx-10">&#8211;cksum md5:source</span>&#8221;. <br 
 class="newline" />
-<!--l. 284--><p class="noindent" ><span 
+<!--l. 267--><p class="noindent" ><span 
 class="cmbx-10">-np</span>
-<!--l. 286--><p class="noindent" >Equivalent to &#8221;<span 
+<!--l. 269--><p class="noindent" >Equivalent to &#8221;<span 
 class="cmbx-10">&#8211;nopbar</span>&#8221;. <br 
 class="newline" />
-<!--l. 288--><p class="noindent" ><span 
+<!--l. 271--><p class="noindent" ><span 
 class="cmbx-10">-OD </span><span class="underline">cgi</span>
-<!--l. 290--><p class="noindent" >Add cgi information <span class="underline">cgi</span> to any destination xrootd URL. You should specify the
+<!--l. 273--><p class="noindent" >Add cgi information <span class="underline">cgi</span> to any destination xrootd URL. You should specify the
 opaque information directly on the destination URL. <br 
 class="newline" />
-<!--l. 293--><p class="noindent" ><span 
+<!--l. 276--><p class="noindent" ><span 
 class="cmbx-10">-OS </span><span class="underline">cgi</span>
-<!--l. 295--><p class="noindent" >Add cgi information <span class="underline">cgi</span> to any source xrootd URL. <br 
+<!--l. 278--><p class="noindent" >Add cgi information <span class="underline">cgi</span> to any source xrootd URL. <br 
 class="newline" />
-<!--l. 297--><p class="noindent" ><span 
+<!--l. 280--><p class="noindent" ><span 
 class="cmbx-10">-x</span>
-<!--l. 299--><p class="noindent" >Equivalent to &#8221;<span 
+<!--l. 282--><p class="noindent" >Equivalent to &#8221;<span 
 class="cmbx-10">&#8211;sources 12</span>&#8221;. <br 
 class="newline" />
-<!--l. 301--><p class="noindent" ><span 
+<!--l. 284--><p class="noindent" ><span 
 class="cmbx-10">OPERANDS </span><br 
 class="newline" />
-<!--l. 303--><p class="noindent" ><span class="underline">source</span>: a dash (i.e. <span 
+<!--l. 286--><p class="noindent" ><span class="underline">source</span>: a dash (i.e. <span 
 class="cmbx-10">-</span>) indicating stanard in, a local file, a local directory name
 suffixed by /, or an xrootd URL in the form of:
-<!--l. 306--><p class="indent" >   <span 
+<!--l. 289--><p class="indent" >   <span 
 class="cmbx-10">xroot:// </span>[<span class="underline">user</span><span 
 class="cmbx-10">@</span>] <span class="underline">host</span> [<span 
 class="cmbx-10">:</span><span class="underline">port</span>] /absolutepath
-<!--l. 308--><p class="noindent" >The <span class="underline">absolutepath</span> can be a directory. <br 
+<!--l. 291--><p class="noindent" >The <span class="underline">absolutepath</span> can be a directory. <br 
 class="newline" />
-<!--l. 310--><p class="noindent" ><span class="underline">destination</span>: a dash (i.e. <span 
+<!--l. 293--><p class="noindent" ><span class="underline">destination</span>: a dash (i.e. <span 
 class="cmbx-10">-</span>) indicating stanard out, a local file, a local directory name
 suffixed by /, or an xrootd URL in the form:
-<!--l. 313--><p class="indent" >   <span 
+<!--l. 296--><p class="indent" >   <span 
 class="cmbx-10">xroot:// </span>[<span class="underline">user</span><span 
 class="cmbx-10">@</span>] <span class="underline">host</span> [<span 
 class="cmbx-10">:</span><span class="underline">port</span>] /absolutepath
-<!--l. 315--><p class="noindent" >The <span class="underline">absolutepath</span> can be a directory.
+<!--l. 298--><p class="noindent" >The <span class="underline">absolutepath</span> can be a directory.
                                                                   
 
                                                                   
-<!--l. 317--><p class="noindent" >
+<!--l. 300--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">3.2   </span> <a 
  id="x1-60003.2"></a>xrdfs - xrootd file and directory meta-data utility</h4>
-<!--l. 319--><p class="noindent" ><span 
+<!--l. 302--><p class="noindent" ><span 
 class="cmbx-10">xrdfs </span>[&#8211;no-cwd] host[:port] [command [args]] <br 
 class="newline" />
-<!--l. 321--><p class="noindent" ><span 
+<!--l. 304--><p class="noindent" ><span 
 class="cmbx-10">DESCRIPTION </span><br 
 class="newline" />
-<!--l. 323--><p class="indent" >   The <span 
+<!--l. 306--><p class="indent" >   The <span 
 class="cmbx-10">xrdfs </span>utility executes meta-data oriented operations (e.g., ls, mv, rm, etc.)
 on one or more xrootd servers. Command help is available by invoking xrdfs with no
 command line options or parameters and then typing &#8221;help&#8221; in response to the input
 prompt. <br 
 class="newline" />
-<!--l. 327--><p class="noindent" ><span 
+<!--l. 310--><p class="noindent" ><span 
 class="cmbx-10">OPTIONS </span><br 
 class="newline" />
-<!--l. 329--><p class="noindent" ><span 
+<!--l. 312--><p class="noindent" ><span 
 class="cmbx-10">&#8211;no-cwd</span>
-<!--l. 331--><p class="noindent" >No CWD is being preset in interactive mode. <br 
+<!--l. 314--><p class="noindent" >No CWD is being preset in interactive mode. <br 
 class="newline" />
                                                                   
 
                                                                   
-<!--l. 335--><p class="noindent" ><span 
+<!--l. 318--><p class="noindent" ><span 
 class="cmbx-10">COMMANDS </span><br 
 class="newline" />
-<!--l. 337--><p class="noindent" ><span 
+<!--l. 320--><p class="noindent" ><span 
 class="cmbx-10">chmod </span><span class="underline">path</span> <span 
 class="cmmi-10">&#x003C;</span><span class="underline">user</span><span 
 class="cmmi-10">&#x003E;&#x003C;</span><span class="underline">group</span><span 
@@ -668,26 +669,26 @@ class="cmmi-10">&#x003E;&#x003C;</span><span class="underline">other</span><span
 class="cmmi-10">&#x003E; </span><br 
 class="newline" />Modify permissions of the path. Permission string example: rwxr-x&#8211;x <br 
 class="newline" />
-<!--l. 340--><p class="noindent" ><span 
+<!--l. 323--><p class="noindent" ><span 
 class="cmbx-10">ls </span>[<span class="underline">-l</span>] [<span class="underline">-u</span>] [<span class="underline">-R</span>] [<span class="underline">dirname</span>] <br 
 class="newline" />Get directory listing.
-<!--l. 343--><p class="indent" >   <span class="underline">-l</span> stat every entry and pring long listing
-<!--l. 345--><p class="indent" >   <span class="underline">-u</span> print paths as URLs
-<!--l. 347--><p class="indent" >   <span class="underline">-R</span> list subdirectories recursively
-<!--l. 349--><p class="indent" >   <span class="underline">-D</span> show duplicate entries <br 
+<!--l. 326--><p class="indent" >   <span class="underline">-l</span> stat every entry and pring long listing
+<!--l. 328--><p class="indent" >   <span class="underline">-u</span> print paths as URLs
+<!--l. 330--><p class="indent" >   <span class="underline">-R</span> list subdirectories recursively
+<!--l. 332--><p class="indent" >   <span class="underline">-D</span> show duplicate entries <br 
 class="newline" />
-<!--l. 351--><p class="noindent" ><span 
+<!--l. 334--><p class="noindent" ><span 
 class="cmbx-10">locate </span>[-n] [-r] [-d] <span 
 class="cmmi-10">&#x003C;</span>path<span 
 class="cmmi-10">&#x003E; </span><br 
 class="newline" />Get the locations of the path.
-<!--l. 354--><p class="indent" >   <span class="underline">-r</span> refresh, don&#8217;t use cached locations
-<!--l. 356--><p class="indent" >   <span class="underline">-n</span> make the server return the response immediately (it may be incomplete)
-<!--l. 358--><p class="indent" >   <span class="underline">-d</span> do a recursive, deep locate in order to find data servers
-<!--l. 360--><p class="indent" >   <span class="underline">-m</span> prefer host names to IP addresses
-<!--l. 362--><p class="indent" >   <span class="underline">-i</span> ignore network dependencies (IPv6/IPv4) <br 
+<!--l. 337--><p class="indent" >   <span class="underline">-r</span> refresh, don&#8217;t use cached locations
+<!--l. 339--><p class="indent" >   <span class="underline">-n</span> make the server return the response immediately (it may be incomplete)
+<!--l. 341--><p class="indent" >   <span class="underline">-d</span> do a recursive, deep locate in order to find data servers
+<!--l. 343--><p class="indent" >   <span class="underline">-m</span> prefer host names to IP addresses
+<!--l. 345--><p class="indent" >   <span class="underline">-i</span> ignore network dependencies (IPv6/IPv4) <br 
 class="newline" />
-<!--l. 364--><p class="noindent" ><span 
+<!--l. 347--><p class="noindent" ><span 
 class="cmbx-10">mkdir </span>[-p] [-m<span 
 class="cmmi-10">&#x003C;</span>user<span 
 class="cmmi-10">&#x003E;&#x003C;</span>group<span 
@@ -696,27 +697,27 @@ class="cmmi-10">&#x003E;</span>] <span
 class="cmmi-10">&#x003C;</span>dirname<span 
 class="cmmi-10">&#x003E; </span><br 
 class="newline" />Creates a directory/tree of directories.
-<!--l. 367--><p class="indent" >   <span class="underline">-p</span> create the entire directory tree recursively
-<!--l. 369--><p class="indent" >   <span class="underline">-m</span><span 
+<!--l. 350--><p class="indent" >   <span class="underline">-p</span> create the entire directory tree recursively
+<!--l. 352--><p class="indent" >   <span class="underline">-m</span><span 
 class="cmmi-10">&#x003C;</span>user<span 
 class="cmmi-10">&#x003E;&#x003C;</span>group<span 
 class="cmmi-10">&#x003E;&#x003C;</span>other<span 
 class="cmmi-10">&#x003E; </span>permissions for newly created directories
 <br 
 class="newline" />
-<!--l. 371--><p class="noindent" ><span 
+<!--l. 354--><p class="noindent" ><span 
 class="cmbx-10">mv </span><span 
 class="cmmi-10">&#x003C;</span>path1<span 
 class="cmmi-10">&#x003E; &#x003C;</span>path2<span 
 class="cmmi-10">&#x003E; </span><br 
 class="newline" />Move path1 to path2 locally on the same server. <br 
 class="newline" />
-<!--l. 374--><p class="noindent" ><span 
+<!--l. 357--><p class="noindent" ><span 
 class="cmbx-10">stat </span><span 
 class="cmmi-10">&#x003C;</span>path<span 
 class="cmmi-10">&#x003E;</span>
-<!--l. 376--><p class="noindent" >Get info about the file or directory.
-   <div class="minipage"><!--l. 379--><p class="noindent" ><span class="underline">-q</span> query optional flag query parameter that makes xrdfs return error code
+<!--l. 359--><p class="noindent" >Get info about the file or directory.
+   <div class="minipage"><!--l. 362--><p class="noindent" ><span class="underline">-q</span> query optional flag query parameter that makes xrdfs return error code
 to the shell if the requested flag combination is not present; flags may be
 combined together using &#8217;<span 
 class="cmsy-10">|</span>&#8217; or &#8217;&amp;&#8217; Available flags: <span 
@@ -729,19 +730,19 @@ class="cmbx-10">POSCPending</span>, <span
 class="cmbx-10">IsReadable</span>, <span 
 class="cmbx-10">IsWriteable </span><br 
 class="newline" /></div>
-<!--l. 383--><p class="noindent" ><span 
+<!--l. 366--><p class="noindent" ><span 
 class="cmbx-10">statvfs </span><span 
 class="cmmi-10">&#x003C;</span>path<span 
 class="cmmi-10">&#x003E;</span>
-<!--l. 385--><p class="noindent" >Get info about a virtual file system. <br 
+<!--l. 368--><p class="noindent" >Get info about a virtual file system. <br 
 class="newline" />
-<!--l. 387--><p class="noindent" ><span 
+<!--l. 370--><p class="noindent" ><span 
 class="cmbx-10">query </span><span 
 class="cmmi-10">&#x003C;</span>code<span 
 class="cmmi-10">&#x003E; &#x003C;</span>params<span 
 class="cmmi-10">&#x003E;</span>
-<!--l. 389--><p class="noindent" >Obtain server information. Query codes:
-<!--l. 391--><p class="indent" >   <span class="underline">config</span> <span 
+<!--l. 372--><p class="noindent" >Obtain server information. Query codes:
+<!--l. 374--><p class="indent" >   <span class="underline">config</span> <span 
 class="cmmi-10">&#x003C;</span><span 
 class="cmbx-10">what</span><span 
 class="cmmi-10">&#x003E; </span>Server configuration; <span 
@@ -776,27 +777,27 @@ class="cmmi-10">&#x003E; </span>is one of the following:
      <li class="itemize">sitename - the site name
      </li>
      <li class="itemize">version - the version of the server</li></ul>
-<!--l. 408--><p class="indent" >   <span class="underline">checksumcancel</span> <span 
+<!--l. 391--><p class="indent" >   <span class="underline">checksumcancel</span> <span 
 class="cmmi-10">&#x003C;</span><span 
 class="cmbx-10">path</span><span 
 class="cmmi-10">&#x003E; </span>File checksum cancelation
-<!--l. 410--><p class="indent" >   <span class="underline">checksum</span> <span 
+<!--l. 393--><p class="indent" >   <span class="underline">checksum</span> <span 
 class="cmmi-10">&#x003C;</span><span 
 class="cmbx-10">path</span><span 
 class="cmmi-10">&#x003E;</span>File checksum
-<!--l. 412--><p class="indent" >   <span class="underline">opaque</span> <span 
+<!--l. 395--><p class="indent" >   <span class="underline">opaque</span> <span 
 class="cmmi-10">&#x003C;</span><span 
 class="cmbx-10">arg</span><span 
 class="cmmi-10">&#x003E; </span>Implementation dependent
-<!--l. 414--><p class="indent" >   <span class="underline">opaquefile</span> <span 
+<!--l. 397--><p class="indent" >   <span class="underline">opaquefile</span> <span 
 class="cmmi-10">&#x003C;</span><span 
 class="cmbx-10">arg</span><span 
 class="cmmi-10">&#x003E; </span>Implementation dependent
-<!--l. 416--><p class="indent" >   <span class="underline">space</span> <span 
+<!--l. 399--><p class="indent" >   <span class="underline">space</span> <span 
 class="cmmi-10">&#x003C;</span><span 
 class="cmbx-10">space</span><span 
 class="cmmi-10">&#x003E; </span>Logical space stats
-   <div class="minipage"><!--l. 419--><p class="noindent" ><span class="underline">stats</span> <span 
+   <div class="minipage"><!--l. 402--><p class="noindent" ><span class="underline">stats</span> <span 
 class="cmmi-10">&#x003C;</span><span 
 class="cmbx-10">what</span><span 
 class="cmmi-10">&#x003E; </span>Server stats; <span 
@@ -824,37 +825,37 @@ class="cmmi-10">&#x003E; </span>is a list of letters indicating informationto be
      <li class="itemize">z - synchronized statistics
      </li>
      <li class="itemize">l - connection statistics</li></ul>
-<!--l. 433--><p class="indent" >   <span class="underline">xattr</span> <span 
+<!--l. 416--><p class="indent" >   <span class="underline">xattr</span> <span 
 class="cmmi-10">&#x003C;</span><span 
 class="cmbx-10">path</span><span 
 class="cmmi-10">&#x003E; </span>Extended attributes <br 
 class="newline" />
-<!--l. 435--><p class="noindent" ><span 
+<!--l. 418--><p class="noindent" ><span 
 class="cmbx-10">rm </span><span class="underline"><span 
 class="cmmi-10">&#x003C;</span>filename<span 
 class="cmmi-10">&#x003E;</span></span>
-<!--l. 437--><p class="noindent" >Remove a file. <br 
+<!--l. 420--><p class="noindent" >Remove a file. <br 
 class="newline" />
                                                                   
 
                                                                   
-<!--l. 441--><p class="noindent" ><span 
+<!--l. 424--><p class="noindent" ><span 
 class="cmbx-10">rmdir </span><span class="underline"><span 
 class="cmmi-10">&#x003C;</span>dirname<span 
 class="cmmi-10">&#x003E;</span></span>
-<!--l. 443--><p class="noindent" >Remove a directory. <br 
+<!--l. 426--><p class="noindent" >Remove a directory. <br 
 class="newline" />
-<!--l. 445--><p class="noindent" ><span 
+<!--l. 428--><p class="noindent" ><span 
 class="cmbx-10">truncate </span><span class="underline"><span 
 class="cmmi-10">&#x003C;</span>filename<span 
 class="cmmi-10">&#x003E;</span></span> <span class="underline"><span 
 class="cmmi-10">&#x003C;</span>length<span 
 class="cmmi-10">&#x003E;</span></span>
-<!--l. 447--><p class="noindent" >Truncate a file. <br 
+<!--l. 430--><p class="noindent" >Truncate a file. <br 
 class="newline" />
-<!--l. 449--><p class="noindent" ><span 
+<!--l. 432--><p class="noindent" ><span 
 class="cmbx-10">prepare </span><span class="underline">[-c]</span> <span class="underline">[-f]</span> <span class="underline">[-s]</span> <span class="underline">[-w]</span> <span class="underline">[-p priority]</span> <span class="underline">filenames</span>
-<!--l. 451--><p class="noindent" >Prepare one or more files for access.
+<!--l. 434--><p class="noindent" >Prepare one or more files for access.
      <ul class="itemize1">
      <li class="itemize">-c co-locate staged files if possible
      </li>
@@ -865,21 +866,21 @@ class="cmbx-10">prepare </span><span class="underline">[-c]</span> <span class="
      <li class="itemize">-w whe files will be accessed for modification
      </li>
      <li class="itemize">-p priority of the request, 0 (lowest) - 3 (highest)</li></ul>
-<!--l. 460--><p class="noindent" ><span 
+<!--l. 443--><p class="noindent" ><span 
 class="cmbx-10">cat </span><span class="underline">[-o localfile]</span> <span class="underline">file</span>
-<!--l. 462--><p class="noindent" >Print contents of a file to stdout
-<!--l. 464--><p class="indent" >   <span class="underline">-o</span> print to the specified local file <br 
+<!--l. 445--><p class="noindent" >Print contents of a file to stdout
+<!--l. 447--><p class="indent" >   <span class="underline">-o</span> print to the specified local file <br 
 class="newline" />
-<!--l. 466--><p class="noindent" ><span 
+<!--l. 449--><p class="noindent" ><span 
 class="cmbx-10">tail </span><span class="underline">[-c bytes]</span> <span class="underline">[-f]</span> <span class="underline">file</span>
-<!--l. 468--><p class="noindent" >Output last part of files to stdout.
-<!--l. 470--><p class="indent" >   <span class="underline">-c</span> num&#x02D9;bytes out last num&#x02D9;bytes <span class="underline">-f</span> output appended data as file grows
+<!--l. 451--><p class="noindent" >Output last part of files to stdout.
+<!--l. 453--><p class="indent" >   <span class="underline">-c</span> num&#x02D9;bytes out last num&#x02D9;bytes <span class="underline">-f</span> output appended data as file grows
 <br 
 class="newline" />
-<!--l. 473--><p class="noindent" ><span 
+<!--l. 456--><p class="noindent" ><span 
 class="cmbx-10">spaceinfo </span><span class="underline">path</span>
-<!--l. 475--><p class="noindent" >Get space statistics for given path.
-<!--l. 477--><p class="noindent" >
+<!--l. 458--><p class="noindent" >Get space statistics for given path.
+<!--l. 460--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">3.3   </span> <a 
  id="x1-70003.3"></a>Return Codes</h4>
      <ul class="itemize1">
@@ -906,22 +907,22 @@ class="cmbx-10">54 </span>: redirection error
      </li>
      <li class="itemize"><span 
 class="cmbx-10">55 </span>: query response was negative (this is not an error)</li></ul>
-<!--l. 490--><p class="noindent" >
+<!--l. 473--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">4   </span> <a 
  id="x1-80004"></a>Environment Variables</h3>
-<!--l. 492--><p class="noindent" >This section describes XRootD client environment variables. The following list of
+<!--l. 475--><p class="noindent" >This section describes XRootD client environment variables. The following list of
 environment variables applies to <span 
 class="cmti-10">xrdcp</span>, <span 
 class="cmti-10">xrdfs </span>any other application using the
 libXrdCl library, unless specified otherwise.
-<!--l. 496--><p class="noindent" >
+<!--l. 479--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">4.1   </span> <a 
  id="x1-90004.1"></a>Categories</h4>
 <div class="center" 
 >
-<!--l. 497--><p class="noindent" >
+<!--l. 480--><p class="noindent" >
 <a 
- id="x1-9001r1"></a><!--l. 500--><div class="longtable"> <table id="TBL-2" class="longtable" 
+ id="x1-9001r1"></a><!--l. 483--><div class="longtable"> <table id="TBL-2" class="longtable" 
 cellspacing="0" cellpadding="0" rules="groups" 
 ><colgroup id="TBL-2-1g"><col 
 id="TBL-2-1"></colgroup><colgroup id="TBL-2-2g"><col 
@@ -951,7 +952,7 @@ class="cmr-7">XRD&#x02D9;SUBSTREAMSPERCHANNEL</span></a>
          <li class="itemize"><a 
 href="#x1-490004.2.39"><span 
 class="cmr-7">XRD&#x02D9;WORKERTHREADS</span></a></li></ul>
-<!--l. 508--><p class="noindent" >                                                                </td>
+<!--l. 491--><p class="noindent" >                                                                </td>
 </tr><tr 
 class="hline"><td><hr></td><td><hr></td></tr><tr  
  style="vertical-align:baseline;" id="TBL-2-2-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-2-1"  
@@ -970,7 +971,7 @@ class="cmr-7">XRD&#x02D9;LOGFILE</span></a>
          <li class="itemize"><a 
 href="#x1-260004.2.16"><span 
 class="cmr-7">XRD&#x02D9;LOGMASK</span></a></li></ul>
-<!--l. 517--><p class="noindent" >                                                                </td>
+<!--l. 500--><p class="noindent" >                                                                </td>
 </tr><tr 
 class="hline"><td><hr></td><td><hr></td></tr><tr  
  style="vertical-align:baseline;" id="TBL-2-3-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-3-1"  
@@ -993,7 +994,7 @@ class="cmr-7">XRD&#x02D9;GLFNREDIRECTOR</span></a>
          <li class="itemize"><a 
 href="#x1-270004.2.17"><span 
 class="cmr-7">XRD&#x02D9;MAXMETALINKWAIT</span></a></li></ul>
-<!--l. 527--><p class="noindent" >                                                                </td>
+<!--l. 510--><p class="noindent" >                                                                </td>
 </tr><tr 
 class="hline"><td><hr></td><td><hr></td></tr><tr  
  style="vertical-align:baseline;" id="TBL-2-4-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-4-1"  
@@ -1012,7 +1013,7 @@ class="cmr-7">XRD&#x02D9;CLIENTMONITOR</span></a>
          <li class="itemize"><a 
 href="#x1-130004.2.3"><span 
 class="cmr-7">XRD&#x02D9;CLIENTMONITORPARAM</span></a></li></ul>
-<!--l. 536--><p class="noindent" >                                                                </td>
+<!--l. 519--><p class="noindent" >                                                                </td>
 </tr><tr 
 class="hline"><td><hr></td><td><hr></td></tr><tr  
  style="vertical-align:baseline;" id="TBL-2-5-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-5-1"  
@@ -1027,7 +1028,7 @@ class="cmr-7">XRD&#x02D9;NETWORKSTACK</span></a>
          <li class="itemize"><a 
 href="#x1-360004.2.26"><span 
 class="cmr-7">XRD&#x02D9;PREFERIPV4</span></a></li></ul>
-<!--l. 544--><p class="noindent" >                                                                </td>
+<!--l. 527--><p class="noindent" >                                                                </td>
 </tr><tr 
 class="hline"><td><hr></td><td><hr></td></tr><tr  
  style="vertical-align:baseline;" id="TBL-2-6-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-6-1"  
@@ -1042,7 +1043,7 @@ class="cmr-7">XRD&#x02D9;PLUGIN</span></a>
          <li class="itemize"><a 
 href="#x1-340004.2.24"><span 
 class="cmr-7">XRD&#x02D9;PLUGINCONFDIR</span></a></li></ul>
-<!--l. 552--><p class="noindent" >                                                                </td>
+<!--l. 535--><p class="noindent" >                                                                </td>
 </tr><tr 
 class="hline"><td><hr></td><td><hr></td></tr><tr  
  style="vertical-align:baseline;" id="TBL-2-7-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-7-1"  
@@ -1069,7 +1070,7 @@ class="cmr-7">XRD&#x02D9;WRITERECOVERY</span></a>
          <li class="itemize"><a 
 href="#x1-410004.2.31"><span 
 class="cmr-7">XRD&#x02D9;STREAMERRORWINDOW</span></a></li></ul>
-<!--l. 563--><p class="noindent" >                                                                </td>
+<!--l. 546--><p class="noindent" >                                                                </td>
 </tr><tr 
 class="hline"><td><hr></td><td><hr></td></tr><tr  
  style="vertical-align:baseline;" id="TBL-2-8-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-8-1"  
@@ -1096,7 +1097,7 @@ class="cmr-7">XRD&#x02D9;TCPKEEPALIVEPROBES</span></a>
          <li class="itemize"><a 
 href="#x1-470004.2.37"><span 
 class="cmr-7">XRD&#x02D9;TCPKEEPALIVETIME</span></a></li></ul>
-<!--l. 574--><p class="noindent" >                                                                </td>
+<!--l. 557--><p class="noindent" >                                                                </td>
 </tr><tr 
 class="hline"><td><hr></td><td><hr></td></tr><tr  
  style="vertical-align:baseline;" id="TBL-2-9-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-9-1"  
@@ -1127,7 +1128,7 @@ class="cmr-7">XRD&#x02D9;LOADBALANCERTTL</span></a>
          <li class="itemize"><a 
 href="#x1-480004.2.38"><span 
 class="cmr-7">XRD&#x02D9;TIMEOUTRESOLUTION</span></a></li></ul>
-<!--l. 586--><p class="noindent" >                                                                </td>
+<!--l. 569--><p class="noindent" >                                                                </td>
 </tr><tr 
 class="hline"><td><hr></td><td><hr></td></tr><tr  
  style="vertical-align:baseline;" id="TBL-2-10-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-10-1"  
@@ -1154,7 +1155,7 @@ class="cmr-7">XRD&#x02D9;CPPARALLELCHUNKS</span></a>
          <li class="itemize"><a 
 href="#x1-510004.2.41"><span 
 class="cmr-7">XRD&#x02D9;XCPBLOCKSIZE</span></a></li></ul>
-<!--l. 597--><p class="noindent" >                                                                </td>
+<!--l. 580--><p class="noindent" >                                                                </td>
 </tr><tr 
 class="hline"><td><hr></td><td><hr></td></tr><tr  
  style="vertical-align:baseline;" id="TBL-2-11-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-11-1"  
@@ -1169,7 +1170,7 @@ class="cmr-7">XRD&#x02D9;POLLERPREFERENCE</span></a>
          <li class="itemize"><a 
 href="#x1-400004.2.30"><span 
 class="cmr-7">XRD&#x02D9;RUNFORKHANDLER</span></a></li></ul>
-<!--l. 605--><p class="noindent" >                                                                </td>
+<!--l. 588--><p class="noindent" >                                                                </td>
 </tr><tr 
 class="hline"><td><hr></td><td><hr></td></tr><tr  
  style="vertical-align:baseline;" id="TBL-2-12-"><td  style="white-space:nowrap; text-align:left;" id="TBL-2-12-1"  
@@ -1191,32 +1192,32 @@ class="td11">                       </td><td  style="white-space:wrap; text-alig
 class="td11"></td></tr>
 </table></div>
 </div>
-<!--l. 610--><p class="noindent" >
+<!--l. 593--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">4.2   </span> <a 
  id="x1-100004.2"></a>Index of Environment Variables</h4>
-<!--l. 613--><p class="noindent" >
+<!--l. 596--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.1   </span> <a 
  id="x1-110004.2.1"></a>XRD&#x02D9;APPNAME</h5>
-<!--l. 615--><p class="noindent" >Override the application name reported to the server. <br 
+<!--l. 598--><p class="noindent" >Override the application name reported to the server. <br 
 class="newline" /><span 
 class="cmbx-10">Default: disabled</span>
-<!--l. 618--><p class="noindent" >
+<!--l. 601--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.2   </span> <a 
  id="x1-120004.2.2"></a>XRD&#x02D9;CLIENTMONITOR</h5>
-<!--l. 620--><p class="noindent" >Path to the client monitor library. <br 
+<!--l. 603--><p class="noindent" >Path to the client monitor library. <br 
 class="newline" /><span 
 class="cmbx-10">Default: disabled</span>
-<!--l. 623--><p class="noindent" >
+<!--l. 606--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.3   </span> <a 
  id="x1-130004.2.3"></a>XRD&#x02D9;CLIENTMONITORPARAM</h5>
-<!--l. 625--><p class="noindent" >Additional optional parameters that will be passed to the monitoring object on
+<!--l. 608--><p class="noindent" >Additional optional parameters that will be passed to the monitoring object on
 initialization. <br 
 class="newline" /><span 
 class="cmbx-10">Default: disabled</span>
-<!--l. 628--><p class="noindent" >
+<!--l. 611--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.4   </span> <a 
  id="x1-140004.2.4"></a>XRD&#x02D9;CONNECTIONWINDOW</h5>
-<!--l. 630--><p class="noindent" >A time window for the connection establishment. A connection failure is declared if
+<!--l. 613--><p class="noindent" >A time window for the connection establishment. A connection failure is declared if
 the connection is not established within the time window. If a connection failure
 happens earlier then another connection attempt will only be made at the beginning
 of the next window. <br 
@@ -1225,67 +1226,67 @@ class="cmbx-10">Default: 120 </span>(seconds)
                                                                   
 
                                                                   
-<!--l. 635--><p class="noindent" >
+<!--l. 618--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.5   </span> <a 
  id="x1-150004.2.5"></a>XRD&#x02D9;CONNECTIONRETRY</h5>
-<!--l. 637--><p class="noindent" >Number of connection attempts that should be made (number of available connection
+<!--l. 620--><p class="noindent" >Number of connection attempts that should be made (number of available connection
 windows) before declaring a permanent failure. <br 
 class="newline" /><span 
 class="cmbx-10">Default: 5</span>
-<!--l. 641--><p class="noindent" >
+<!--l. 624--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.6   </span> <a 
  id="x1-160004.2.6"></a>XRD&#x02D9;CPCHUNKSIZE</h5>
-<!--l. 643--><p class="noindent" >Size of a single data chunk handled by xrdcp / XrdCl::CopyProcess. <br 
+<!--l. 626--><p class="noindent" >Size of a single data chunk handled by xrdcp / XrdCl::CopyProcess. <br 
 class="newline" /><span 
 class="cmbx-10">Default: 16KiB</span>
-<!--l. 646--><p class="noindent" >
+<!--l. 629--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.7   </span> <a 
  id="x1-170004.2.7"></a>XRD&#x02D9;CPINITTIMEOUT</h5>
-<!--l. 648--><p class="noindent" >Maximum time allowed for the copy process to initialize, ie. open the source and
+<!--l. 631--><p class="noindent" >Maximum time allowed for the copy process to initialize, ie. open the source and
 destination files. <br 
 class="newline" /><span 
 class="cmbx-10">Default: 600 </span>(seconds)
-<!--l. 651--><p class="noindent" >
+<!--l. 634--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.8   </span> <a 
  id="x1-180004.2.8"></a>XRD&#x02D9;CPPARALLELCHUNKS</h5>
-<!--l. 653--><p class="noindent" >Maximum number of asynchronous requests being processed by the xrdcp /
+<!--l. 636--><p class="noindent" >Maximum number of asynchronous requests being processed by the xrdcp /
 XrdCl::CopyProcess command at any given time. <br 
 class="newline" /><span 
 class="cmbx-10">Default: 4</span>
-<!--l. 657--><p class="noindent" >
+<!--l. 640--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.9   </span> <a 
  id="x1-190004.2.9"></a>XRD&#x02D9;CPTPCTIMEOUT</h5>
-<!--l. 659--><p class="noindent" >Maximum time allowed for a third-party copy operation to finish. <br 
+<!--l. 642--><p class="noindent" >Maximum time allowed for a third-party copy operation to finish. <br 
 class="newline" /><span 
 class="cmbx-10">Default: 1800 </span>(seconds)
-<!--l. 662--><p class="noindent" >
+<!--l. 645--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.10   </span> <a 
  id="x1-200004.2.10"></a>XRD&#x02D9;DATASERVERTTL</h5>
-<!--l. 664--><p class="noindent" >Time period after which an idle connection to a data server should be closed.
+<!--l. 647--><p class="noindent" >Time period after which an idle connection to a data server should be closed.
 <br 
 class="newline" /><span 
 class="cmbx-10">Default: 300 </span>(seconds)
-<!--l. 668--><p class="noindent" >
+<!--l. 651--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.11   </span> <a 
  id="x1-210004.2.11"></a>XRD&#x02D9;GLFNREDIRECTOR</h5>
-<!--l. 670--><p class="noindent" >The redirector will be used as a last resort if the GLFN tag is specified in a Metalink
+<!--l. 653--><p class="noindent" >The redirector will be used as a last resort if the GLFN tag is specified in a Metalink
 file. <br 
 class="newline" /><span 
 class="cmbx-10">Default: none</span>
                                                                   
 
                                                                   
-<!--l. 673--><p class="noindent" >
+<!--l. 656--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.12   </span> <a 
  id="x1-220004.2.12"></a>XRD&#x02D9;LOADBALANCERTTL</h5>
-<!--l. 675--><p class="noindent" >Time period after which an idle connection to a manager or a load balancer should
+<!--l. 658--><p class="noindent" >Time period after which an idle connection to a manager or a load balancer should
 be closed. <br 
 class="newline" /><span 
 class="cmbx-10">Default: 1200 </span>(seconds)
-<!--l. 678--><p class="noindent" >
+<!--l. 661--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.13   </span> <a 
  id="x1-230004.2.13"></a>XRD&#x02D9;LOCALMETALINKFILE</h5>
-<!--l. 680--><p class="noindent" >Enable/Disable local Metalink file processing (by convention the following URL
+<!--l. 663--><p class="noindent" >Enable/Disable local Metalink file processing (by convention the following URL
 schema has to be used: <span 
 class="cmti-10">root://localfile//path/filename.meta4</span>) The <span 
 class="cmti-10">localfile</span>
@@ -1294,25 +1295,25 @@ class="cmti-10">file://localhost/path/filename.meta4 </span>instead!
 <br 
 class="newline" /><span 
 class="cmbx-10">Default: 0</span>
-<!--l. 685--><p class="noindent" >
+<!--l. 668--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.14   </span> <a 
  id="x1-240004.2.14"></a>XRD&#x02D9;LOGFILE</h5>
-<!--l. 687--><p class="noindent" >If set, the diagnostics will be printed to the specified file instead of <span 
+<!--l. 670--><p class="noindent" >If set, the diagnostics will be printed to the specified file instead of <span 
 class="cmti-10">stderr</span>.
 <br 
 class="newline" /><span 
 class="cmbx-10">Default: disabled</span>
-<!--l. 690--><p class="noindent" >
+<!--l. 673--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.15   </span> <a 
  id="x1-250004.2.15"></a>XRD&#x02D9;LOGLEVEL</h5>
-<!--l. 692--><p class="noindent" >Determines the amount of diagnostics that should be printed. Valid values are:
+<!--l. 675--><p class="noindent" >Determines the amount of diagnostics that should be printed. Valid values are:
 <span class="textul">Dump</span>, <span class="textul">Debug</span>, <span class="textul">Info</span>, <span class="textul">Warning</span>, and <span class="textul">Error</span>. <br 
 class="newline" /><span 
 class="cmbx-10">Default: disabled</span>
-<!--l. 696--><p class="noindent" >
+<!--l. 679--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.16   </span> <a 
  id="x1-260004.2.16"></a>XRD&#x02D9;LOGMASK</h5>
-<!--l. 699--><p class="noindent" >Determines which diagnostics topics should be printed at all levels. It&#8217;s a &#8221;<span 
+<!--l. 682--><p class="noindent" >Determines which diagnostics topics should be printed at all levels. It&#8217;s a &#8221;<span 
 class="cmsy-10">|</span>&#8221;
 separated list of topics. The first element may be &#8220;All&#8221; in which case all the topics
 are enabled and the subsequent elements may turn them off, or &#8221;None&#8221; in which case
@@ -1320,14 +1321,14 @@ all the topics are disabled and the subsequent flags may turn them on. If the to
 name is prefixed with &#8221;&#x02C6;&#8221;, then it means that the topic should be disabled.
 If the topic name is not prefixed, then it means that the topic should be
 enabled.
-<!--l. 705--><p class="indent" >   The log mask may as well be handled for each diagnostic level separately by
+<!--l. 688--><p class="indent" >   The log mask may as well be handled for each diagnostic level separately by
 setting one or more of the following variables: <span class="textul">XRD&#x02D9;LOGMASK&#x02D9;ERROR</span>,
 <span class="textul">XRD&#x02D9;LOGMASK&#x02D9;WARNING</span>, <span class="textul">XRD&#x02D9;LOGMASK&#x02D9;INFO</span>, <span class="textul">XRD&#x02D9;LOGMASK&#x02D9;DEBUG</span>,
 and <span class="textul">XRD&#x02D9;LOGMASK&#x02D9;DUMP</span>.
                                                                   
 
                                                                   
-<!--l. 709--><p class="indent" >   Available topics: AppMsg, UtilityMsg, FileMsg, PollerMsg, PostMasterMsg,
+<!--l. 692--><p class="indent" >   Available topics: AppMsg, UtilityMsg, FileMsg, PollerMsg, PostMasterMsg,
 XRootDTransportMsg, TaskMgrMsg, XRootDMsg, FileSystemMsg, AsyncSockMsg
 <br 
 class="newline" /><span 
@@ -1338,23 +1339,23 @@ class="cmbx-10">&#8221;All</span><span
 class="cmsy-10">| </span><span 
 class="cmbx-10">&#x02C6;PollerMsg&#8221;</span>. This means that, at the <span class="textul">Dump</span> level, all the topics
 but &#8221;PollerMsg&#8221; are enabled.
-<!--l. 716--><p class="noindent" >
+<!--l. 699--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.17   </span> <a 
  id="x1-270004.2.17"></a>XRD&#x02D9;MAXMETALINKWAIT</h5>
-<!--l. 718--><p class="noindent" >The maximum time in seconds a client can be stalled by the server if a Metalink
+<!--l. 701--><p class="noindent" >The maximum time in seconds a client can be stalled by the server if a Metalink
 redirector is available. <br 
 class="newline" /><span 
 class="cmbx-10">Default: 60 </span>(seconds)
-<!--l. 721--><p class="noindent" >
+<!--l. 704--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.18   </span> <a 
  id="x1-280004.2.18"></a>XRD&#x02D9;METALINKPROCESSING</h5>
-<!--l. 723--><p class="noindent" >Enable/Disable Metalink processing. <br 
+<!--l. 706--><p class="noindent" >Enable/Disable Metalink processing. <br 
 class="newline" /><span 
 class="cmbx-10">Default: 1</span>
-<!--l. 726--><p class="noindent" >
+<!--l. 709--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.19   </span> <a 
  id="x1-290004.2.19"></a>XRD&#x02D9;NETWORKSTACK</h5>
-<!--l. 728--><p class="noindent" >The network stack that the client should use to connect to the server. Possible values
+<!--l. 711--><p class="noindent" >The network stack that the client should use to connect to the server. Possible values
 are:
      <ul class="itemize1">
      <li class="itemize"><span 
@@ -1372,95 +1373,95 @@ class="cmbx-10">IPv4 </span>- use only IPv4 stack (AF&#x02D9;INET sockets) and a
      </li>
      <li class="itemize"><span 
 class="cmbx-10">IPv4Mapped6 </span>- use IPv6 stack and mapped IPv4 addresses</li></ul>
-<!--l. 736--><p class="noindent" ><span 
+<!--l. 719--><p class="noindent" ><span 
 class="cmbx-10">Default: IPAuto</span>
                                                                   
 
                                                                   
-<!--l. 738--><p class="noindent" >
+<!--l. 721--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.20   </span> <a 
  id="x1-300004.2.20"></a>XRD&#x02D9;NODELAY</h5>
-<!--l. 740--><p class="noindent" >Disables the Nagle algorithm if set to 1 (default), enables it if set to 0. <br 
+<!--l. 723--><p class="noindent" >Disables the Nagle algorithm if set to 1 (default), enables it if set to 0. <br 
 class="newline" /><span 
 class="cmbx-10">Default: 1</span>
-<!--l. 743--><p class="noindent" >
+<!--l. 726--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.21   </span> <a 
  id="x1-310004.2.21"></a>XRD&#x02D9;OPENRECOVERY</h5>
-<!--l. 745--><p class="noindent" >Determines if open recovery should be enabled or disabled for mutable (truncate or
+<!--l. 728--><p class="noindent" >Determines if open recovery should be enabled or disabled for mutable (truncate or
 create) opens. <br 
 class="newline" /><span 
 class="cmbx-10">Default: true</span>
-<!--l. 748--><p class="noindent" >
+<!--l. 731--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.22   </span> <a 
  id="x1-320004.2.22"></a>XRD&#x02D9;PARALLELEVTLOOP</h5>
-<!--l. 750--><p class="noindent" >The number of event loops. <br 
+<!--l. 733--><p class="noindent" >The number of event loops. <br 
 class="newline" /><span 
 class="cmbx-10">Default: 1</span>
-<!--l. 753--><p class="noindent" >
+<!--l. 736--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.23   </span> <a 
  id="x1-330004.2.23"></a>XRD&#x02D9;PLUGIN</h5>
-<!--l. 755--><p class="noindent" >A default client plug-in to be used. <br 
+<!--l. 738--><p class="noindent" >A default client plug-in to be used. <br 
 class="newline" /><span 
 class="cmbx-10">Default: none</span>
-<!--l. 758--><p class="noindent" >
+<!--l. 741--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.24   </span> <a 
  id="x1-340004.2.24"></a>XRD&#x02D9;PLUGINCONFDIR</h5>
-<!--l. 760--><p class="noindent" >A custom location containing client plug-in config files. <br 
+<!--l. 743--><p class="noindent" >A custom location containing client plug-in config files. <br 
 class="newline" /><span 
 class="cmbx-10">Default: none</span>
-<!--l. 763--><p class="noindent" >
+<!--l. 746--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.25   </span> <a 
  id="x1-350004.2.25"></a>XRD&#x02D9;POLLERPREFERENCE</h5>
-<!--l. 765--><p class="noindent" >A comma separated list of poller implementations in order of preference.
+<!--l. 748--><p class="noindent" >A comma separated list of poller implementations in order of preference.
 <br 
 class="newline" /><span 
 class="cmbx-10">Default: built-in</span>
-<!--l. 768--><p class="noindent" >
+<!--l. 751--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.26   </span> <a 
  id="x1-360004.2.26"></a>XRD&#x02D9;PREFERIPV4</h5>
-<!--l. 770--><p class="noindent" >If set the client tries first IPv4 address (turned off by default). <br 
+<!--l. 753--><p class="noindent" >If set the client tries first IPv4 address (turned off by default). <br 
 class="newline" /><span 
 class="cmbx-10">Default: 0</span>
                                                                   
 
                                                                   
-<!--l. 773--><p class="noindent" >
+<!--l. 756--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.27   </span> <a 
  id="x1-370004.2.27"></a>XRD&#x02D9;READRECOVERY</h5>
-<!--l. 775--><p class="noindent" >Determines if read recovery should be enabled or disabled. <br 
+<!--l. 758--><p class="noindent" >Determines if read recovery should be enabled or disabled. <br 
 class="newline" /><span 
 class="cmbx-10">Default: true</span>
-<!--l. 778--><p class="noindent" >
+<!--l. 761--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.28   </span> <a 
  id="x1-380004.2.28"></a>XRD&#x02D9;REDIRECTLIMIT</h5>
-<!--l. 780--><p class="noindent" >Maximum number of allowed redirections. <br 
+<!--l. 763--><p class="noindent" >Maximum number of allowed redirections. <br 
 class="newline" /><span 
 class="cmbx-10">Default: 16</span>
-<!--l. 783--><p class="noindent" >
+<!--l. 766--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.29   </span> <a 
  id="x1-390004.2.29"></a>XRD&#x02D9;REQUESTTIMEOUT</h5>
-<!--l. 785--><p class="noindent" >Default value for the time after which an error is declared if it was impossible to get
+<!--l. 768--><p class="noindent" >Default value for the time after which an error is declared if it was impossible to get
 a response to a request. <br 
 class="newline" /><span 
 class="cmbx-10">Default: 1800 </span>(seconds)
-<!--l. 789--><p class="noindent" >
+<!--l. 772--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.30   </span> <a 
  id="x1-400004.2.30"></a>XRD&#x02D9;RUNFORKHANDLER</h5>
-<!--l. 791--><p class="noindent" >Determines whether the fork handlers should be enabled, making the API fork safe.
+<!--l. 774--><p class="noindent" >Determines whether the fork handlers should be enabled, making the API fork safe.
 <br 
 class="newline" /><span 
 class="cmbx-10">Default: 0</span>
-<!--l. 794--><p class="noindent" >
+<!--l. 777--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.31   </span> <a 
  id="x1-410004.2.31"></a>XRD&#x02D9;STREAMERRORWINDOW</h5>
-<!--l. 796--><p class="noindent" >Time after which the permanent failure flags are cleared out and a new connection
+<!--l. 779--><p class="noindent" >Time after which the permanent failure flags are cleared out and a new connection
 may be attempted if needed. <br 
 class="newline" /><span 
 class="cmbx-10">Default: 1800</span>
-<!--l. 799--><p class="noindent" >
+<!--l. 782--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.32   </span> <a 
  id="x1-420004.2.32"></a>XRD&#x02D9;STREAMTIMEOUT</h5>
-<!--l. 801--><p class="noindent" >Default value for the time after which a connection error is declared (and a recovery
+<!--l. 784--><p class="noindent" >Default value for the time after which a connection error is declared (and a recovery
 attempted) if there are unfulfilled requests and there is no socket activity or a
 registered wait timeout. <br 
 class="newline" /><span 
@@ -1468,74 +1469,74 @@ class="cmbx-10">Default: 60 </span>(seconds)
                                                                   
 
                                                                   
-<!--l. 805--><p class="noindent" >
+<!--l. 788--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.33   </span> <a 
  id="x1-430004.2.33"></a>XRD&#x02D9;SUBSTREAMSPERCHANNEL</h5>
-<!--l. 807--><p class="noindent" >Number of streams per session. <br 
+<!--l. 790--><p class="noindent" >Number of streams per session. <br 
 class="newline" /><span 
 class="cmbx-10">Default: 1</span>
-<!--l. 810--><p class="noindent" >
+<!--l. 793--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.34   </span> <a 
  id="x1-440004.2.34"></a>XRD&#x02D9;TCPKEEPALIVE</h5>
-<!--l. 812--><p class="noindent" >Enable/Disable the TCP keep alive functionality. <br 
+<!--l. 795--><p class="noindent" >Enable/Disable the TCP keep alive functionality. <br 
 class="newline" /><span 
 class="cmbx-10">Default: 0</span>
-<!--l. 815--><p class="noindent" >
+<!--l. 798--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.35   </span> <a 
  id="x1-450004.2.35"></a>XRD&#x02D9;TCPKEEPALIVEINTERVAL</h5>
-<!--l. 817--><p class="noindent" >Interval between subsequent keepalive probes (Linux only). <br 
+<!--l. 800--><p class="noindent" >Interval between subsequent keepalive probes (Linux only). <br 
 class="newline" /><span 
 class="cmbx-10">Default: 75</span>
-<!--l. 820--><p class="noindent" >
+<!--l. 803--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.36   </span> <a 
  id="x1-460004.2.36"></a>XRD&#x02D9;TCPKEEPALIVEPROBES</h5>
-<!--l. 822--><p class="noindent" >Number of unacknowledged probes before considering the connection dead (Linux
+<!--l. 805--><p class="noindent" >Number of unacknowledged probes before considering the connection dead (Linux
 only). <br 
 class="newline" /><span 
 class="cmbx-10">Default: 9</span>
-<!--l. 825--><p class="noindent" >
+<!--l. 808--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.37   </span> <a 
  id="x1-470004.2.37"></a>XRD&#x02D9;TCPKEEPALIVETIME</h5>
-<!--l. 827--><p class="noindent" >Time between last data packet sent and the first keepalive probe (Linux only).
+<!--l. 810--><p class="noindent" >Time between last data packet sent and the first keepalive probe (Linux only).
 <br 
 class="newline" /><span 
 class="cmbx-10">Default: 7200</span>
-<!--l. 830--><p class="noindent" >
+<!--l. 813--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.38   </span> <a 
  id="x1-480004.2.38"></a>XRD&#x02D9;TIMEOUTRESOLUTION</h5>
-<!--l. 832--><p class="noindent" >Resolution for the timeout events. Ie. timeout events will be processed only every
+<!--l. 815--><p class="noindent" >Resolution for the timeout events. Ie. timeout events will be processed only every
 XRD&#x02D9;TIMEOUTRESOLUTION seconds. <br 
 class="newline" /><span 
 class="cmbx-10">Default: 15 </span>(seconds)
-<!--l. 836--><p class="noindent" >
+<!--l. 819--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.39   </span> <a 
  id="x1-490004.2.39"></a>XRD&#x02D9;WORKERTHREADS</h5>
-<!--l. 838--><p class="noindent" >Number of threads processing user callbacks. <br 
+<!--l. 821--><p class="noindent" >Number of threads processing user callbacks. <br 
 class="newline" /><span 
 class="cmbx-10">Default: 3</span>
                                                                   
 
                                                                   
-<!--l. 841--><p class="noindent" >
+<!--l. 824--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.40   </span> <a 
  id="x1-500004.2.40"></a>XRD&#x02D9;WRITERECOVERY</h5>
-<!--l. 843--><p class="noindent" >Determines if write recovery should be enabled or disabled. <br 
+<!--l. 826--><p class="noindent" >Determines if write recovery should be enabled or disabled. <br 
 class="newline" /><span 
 class="cmbx-10">Default: true</span>
-<!--l. 846--><p class="noindent" >
+<!--l. 829--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.2.41   </span> <a 
  id="x1-510004.2.41"></a>XRD&#x02D9;XCPBLOCKSIZE</h5>
-<!--l. 848--><p class="noindent" >Maximu size of a data block assigned to a single source in case of an extreme copy
+<!--l. 831--><p class="noindent" >Maximu size of a data block assigned to a single source in case of an extreme copy
 transfer. <br 
 class="newline" /><span 
 class="cmbx-10">Default: 128MiB</span>
-<!--l. 852--><p class="noindent" >
+<!--l. 835--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">4.3   </span> <a 
  id="x1-520004.3"></a>Timeouts Explained</h4>
-<!--l. 854--><p class="noindent" >
+<!--l. 837--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.3.1   </span> <a 
  id="x1-530004.3.1"></a>Connection Window and Connection Retry</h5>
-<!--l. 855--><p class="noindent" >The <a 
+<!--l. 838--><p class="noindent" >The <a 
 href="#x1-140004.2.4"><span 
 class="cmti-10">ConnectionWindow</span></a> parameter is applied during client-server connection and
 controls two aspects of this process:
@@ -1560,7 +1561,7 @@ class="cmti-10">ConnectionWindow  </span>before  attempting  another
      by <a 
 href="#x1-150004.2.5"><span 
 class="cmti-10">ConnectionRetry</span></a> environment variable.</li></ul>
-<!--l. 868--><p class="noindent" >Let us illustrate all this with following example. Suppose XRootD client wants to
+<!--l. 851--><p class="noindent" >Let us illustrate all this with following example. Suppose XRootD client wants to
 connect to a server with three physical IP address (2x IPv6 and 1x IPv4). For the
 sake of argument let us suppose it will fail after 60s during the hand-shake procedure,
 while connecting to the 1<sup><span 
@@ -1591,10 +1592,10 @@ class="cmbx-10">is not applied</span>
 class="cmbx-10">per single physical connection but rather to the whole connection</span>
 <span 
 class="cmbx-10">procedure</span>).
-<!--l. 881--><p class="noindent" >
+<!--l. 864--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.3.2   </span> <a 
  id="x1-540004.3.2"></a>Stream Timeout</h5>
-<!--l. 882--><p class="noindent" >The <a 
+<!--l. 865--><p class="noindent" >The <a 
 href="#x1-420004.2.32"><span 
 class="cmti-10">StreamTimeout</span></a> parameter is applied during every request/response exchange
 after the client and the server established a connection. It defines the maximum
@@ -1618,10 +1619,10 @@ class="cmti-10">StreamTimeout </span>does not apply to the original request
 class="cmti-10">StreamTimeout </span>to given request by sending <a 
 href="http://xrootd.org/doc/dev49/XRdv400.htm#_Toc517297832" ><span 
 class="cmti-10">kXR&#x02D9;waitresp</span></a>.</li></ul>
-<!--l. 895--><p class="noindent" >
+<!--l. 878--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.3.3   </span> <a 
  id="x1-550004.3.3"></a>Stream Error Window</h5>
-<!--l. 896--><p class="noindent" >The <a 
+<!--l. 879--><p class="noindent" >The <a 
 href="#x1-410004.2.31"><span 
 class="cmti-10">StreamErrorWindow</span></a> controls the length of time that needs to elapse after a
 fatal error before the client may attempt to reconnect to the server. A fatal
@@ -1631,10 +1632,10 @@ class="cmti-10">connect</span>/<span
 class="cmti-10">fcntl</span>/<span 
 class="cmti-10">epool</span>), or client runs out of connection
 retries.
-<!--l. 901--><p class="noindent" >
+<!--l. 884--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.3.4   </span> <a 
  id="x1-560004.3.4"></a>RequestTimeout</h5>
-<!--l. 902--><p class="noindent" >The <a 
+<!--l. 885--><p class="noindent" >The <a 
 href="#x1-390004.2.29"><span 
 class="cmti-10">RequestTimeout</span></a> parameter is applied to a logical XRootD operation (eg.
 opening a file, listing directory, etc.) as a whole. It is the maximum length of time
@@ -1648,10 +1649,10 @@ class="cmti-10">RequestTimeout </span>is exceeded an error is declared and the o
 resolved as failed. <br 
 class="newline" />Note: The value of this parameter might be overwritten directly by the user of
 XRootD client API by setting the timeout argument.
-<!--l. 909--><p class="noindent" >
+<!--l. 892--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.3.5   </span> <a 
  id="x1-570004.3.5"></a>Time To Live</h5>
-<!--l. 910--><p class="noindent" >A Time To Live (TTL) timeout controls the lifetime of an idle physical connection. If
+<!--l. 893--><p class="noindent" >A Time To Live (TTL) timeout controls the lifetime of an idle physical connection. If
 for the given communication channel the time length elapsed from last exchange of
 request/response between the client and server exceeds the TTL timeout the given
 connection will be terminated. There are two types of TTL timeouts in XRootD
@@ -1664,10 +1665,10 @@ class="cmti-10">DataServerTTL</span></a>: a TTL timeout that is applied to Data 
      <li class="itemize"><a 
 href="#x1-220004.2.12"><span 
 class="cmti-10">LoadBalancerTTL</span></a>: a TTL timeout that is applied to Managers</li></ul>
-<!--l. 919--><p class="noindent" >
+<!--l. 902--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.3.6   </span> <a 
  id="x1-580004.3.6"></a>How does it all come together?</h5>
-<!--l. 920--><p class="noindent" >Let us now consider an example in order to illustrate how all those timeouts play
+<!--l. 903--><p class="noindent" >Let us now consider an example in order to illustrate how all those timeouts play
 along (<span 
 class="cmbx-10">for clarity please consult the diagram below</span>). Suppose that an
 <span 
@@ -1682,7 +1683,7 @@ class="cmbxti-10">ConnectionWindow</span>):
      <li class="itemize">carry out hand-shake procedure (<span 
 class="cmti-10">kXR&#x02D9;protocol</span>, <span 
 class="cmti-10">kXR&#x02D9;login</span>, etc.)</li></ul>
-<!--l. 927--><p class="noindent" >Subsequently, the client will issue a <span 
+<!--l. 910--><p class="noindent" >Subsequently, the client will issue a <span 
 class="cmti-10">kXR&#x02D9;open </span>request (subject to <span 
 class="cmbxti-10">StreamTimeout</span>).
 Let us suppose that the server will respond with a <span 
@@ -1704,14 +1705,14 @@ class="newline" />
                                                                   
 <div class="center" 
 >
-<!--l. 934--><p class="noindent" >
-<!--l. 935--><p class="noindent" ><img 
+<!--l. 917--><p class="noindent" >
+<!--l. 918--><p class="noindent" ><img 
 src="timeout.png" alt="PIC"  
 ></div>
-<!--l. 939--><p class="noindent" >
+<!--l. 922--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">4.3.7   </span> <a 
  id="x1-590004.3.7"></a>xrdcp / XrdCl::CopyProcess Third-Party-Copy timeouts</h5>
-<!--l. 940--><p class="noindent" >The <a 
+<!--l. 923--><p class="noindent" >The <a 
 href="#x1-170004.2.7"><span 
 class="cmti-10">CPInitTimeout</span></a> parameter is applied during initialization of a Third-Party-Copy
 (TPC) transfer. It defines the maximum length of time that may elapse
@@ -1733,10 +1734,10 @@ href="http://xrootd.org/doc/dev49/tpc_protocol.htm" >TPC Protocol Reference</a>)
                                                                   
 
                                                                   
-<!--l. 950--><p class="noindent" >
+<!--l. 933--><p class="noindent" >
    <h3 class="sectionHead"><span class="titlemark">5   </span> <a 
  id="x1-600005"></a>Client Declarative API</h3>
-<!--l. 952--><p class="noindent" >This section describes XRootD client declarative API introduced in version 4.9.0. For
+<!--l. 935--><p class="noindent" >This section describes XRootD client declarative API introduced in version 4.9.0. For
 the standard <span 
 class="cmti-10">XrdCl::File </span>and <span 
 class="cmti-10">XrdCl::FileSystem </span>API please consult our <a 
@@ -1749,7 +1750,7 @@ class="cmti-10">FileSystem </span>operations, however its sole focus is on facil
 asynchronous programing model and chaining of operations. Also, the new API has
 been designed to be more in line with modern C++ programming practices (see
 example below).
-   <!--l. 958-->
+   <!--l. 941-->
 <div class="lstlisting" id="listing-2"><span class="label"><a 
  id="x1-60001r1"></a><span 
 class="cmr-5">1</span></span><span 
@@ -1902,10 +1903,10 @@ class="cmr-8">&#x00A0;</span><br /><span class="label"><a
  id="x1-60011r11"></a><span 
 class="cmr-5">11</span></span>
    </div>
-<!--l. 972--><p class="noindent" >
+<!--l. 955--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">5.1   </span> <a 
  id="x1-610005.1"></a>Operation Utilities</h4>
-<!--l. 974--><p class="noindent" >There are several utilities for facilitating composition of operations:
+<!--l. 957--><p class="noindent" >There are several utilities for facilitating composition of operations:
      <ul class="itemize1">
      <li class="itemize"><span 
 class="cmbx-10">Pipeline</span>:  a  class  that  can  wrap  any  kind  of  operation  (including
@@ -1913,12 +1914,12 @@ class="cmbx-10">Pipeline</span>:  a  class  that  can  wrap  any  kind  of  oper
      </li>
      <li class="itemize"><span 
 class="cmbx-10">Async</span>: a utility for asynchronous execution of pipelines.
-     <!--l. 982--><p class="noindent" >Returns: <span 
+     <!--l. 965--><p class="noindent" >Returns: <span 
 class="cmti-10">std::future</span><span 
 class="cmmi-10">&#x003C;</span><span 
 class="cmti-10">XrdCl::XRootDStatus</span><span 
 class="cmmi-10">&#x003E;</span>
-     <!--l. 984-->
+     <!--l. 967-->
 <div class="lstlisting" id="listing-3"><span class="label"><a 
  id="x1-61001r1"></a><span 
 class="cmr-5">1</span></span><span 
@@ -1991,9 +1992,9 @@ class="cmr-5">5</span></span>
      </li>
      <li class="itemize"><span 
 class="cmbx-10">WaitFor</span>: a utility for synchronous execution of pipelines.
-     <!--l. 994--><p class="noindent" >Returns: <span 
+     <!--l. 977--><p class="noindent" >Returns: <span 
 class="cmti-10">XrdCl::XRootDStatus</span>.
-     <!--l. 996-->
+     <!--l. 979-->
 <div class="lstlisting" id="listing-4"><span class="label"><a 
  id="x1-61006r1"></a><span 
 class="cmr-5">1</span></span><span 
@@ -2047,8 +2048,8 @@ class="cmbx-10">XrdCl::Fwd</span>: a <span
 class="cmti-10">forward </span>is used to pass values between different operations in a
      pipeline. In particular it can be used to forward a value from an operation
      handler to a subsequent operation as an argument.
-     <!--l. 1006--><p class="noindent" >Consider following example of reading a whole file of unknown size:
-     <!--l. 1008-->
+     <!--l. 989--><p class="noindent" >Consider following example of reading a whole file of unknown size:
+     <!--l. 991-->
 <div class="lstlisting" id="listing-5"><span class="label"><a 
  id="x1-61010r1"></a><span 
 class="cmr-5">1</span></span><span 
@@ -2410,7 +2411,7 @@ class="cmr-8">&#x00A0;</span><br /><span class="label"><a
  id="x1-61027r18"></a><span 
 class="cmr-5">18</span></span>
      </div>
-     <!--l. 1028--><p class="noindent" >In lines 2-3 we declare forwardable <span 
+     <!--l. 1011--><p class="noindent" >In lines 2-3 we declare forwardable <span 
 class="cmti-10">size </span>and <span 
 class="cmti-10">buffer </span>arguments. In the pipeline
      we first issue an open, which we handle with a lambda (open returns also stat
@@ -2433,7 +2434,7 @@ class="cmbx-10">variable</span>
 class="cmbx-10">number of operations </span>or a <span 
 class="cmbx-10">container of operations </span>(see example
      below).
-     <!--l. 1036-->
+     <!--l. 1019-->
 <div class="lstlisting" id="listing-6"><span class="label"><a 
  id="x1-61028r1"></a><span 
 class="cmr-5">1</span></span><span 
@@ -2578,10 +2579,10 @@ class="cmr-8">&#x00A0;</span><br /><span class="label"><a
 class="cmr-5">10</span></span>
      </div>
      </li></ul>
-<!--l. 1051--><p class="noindent" >
+<!--l. 1034--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">5.2   </span> <a 
  id="x1-620005.2"></a>Operation Handlers</h4>
-<!--l. 1053--><p class="noindent" >The declarative API supports following handlers: <span 
+<!--l. 1036--><p class="noindent" >The declarative API supports following handlers: <span 
 class="cmti-10">XrdCl::ResponseHandler</span>, functions,
 function objects, lambdas, <span 
 class="cmti-10">std::future </span>and <span 
@@ -2597,7 +2598,7 @@ class="cmbxti-10">XrdCl::ResponseHandler </span>&#8211; standard XRootD response
      Operations can accept <span 
 class="cmti-10">XrdCl::ResponseHandler </span>both by reference and
      pointer.
-     <!--l. 1062-->
+     <!--l. 1045-->
                                                                   
 
                                                                   
@@ -2861,7 +2862,7 @@ class="cmti-10">void(XRootDStatus&amp;, Response&amp;)</span><span
 class="cmmi-10">&#x003E; </span>where <span 
 class="cmti-10">Response </span>is
          defined as a response type for given operation.</li></ul>
-     <!--l. 1094-->
+     <!--l. 1077-->
 <div class="lstlisting" id="listing-8"><span class="label"><a 
  id="x1-62021r1"></a><span 
 class="cmr-5">1</span></span><span 
@@ -3063,7 +3064,7 @@ class="cmti-10">future </span>will throw an instance of
      <span 
 class="cmti-10">XrdCl::PipelineException </span>that in turn will yield the <span 
 class="cmti-10">XrdCl::XRootDStatus</span>.
-     <!--l. 1117-->
+     <!--l. 1100-->
                                                                   
 
                                                                   
@@ -3347,7 +3348,7 @@ class="cmti-10">std::future</span>, e.g. it can
      be used to parse the response with a lambda into a desired type of
      <span 
 class="cmti-10">std::future</span>.
-     <!--l. 1151-->
+     <!--l. 1134-->
 <div class="lstlisting" id="listing-10"><span class="label"><a 
  id="x1-62062r1"></a><span 
 class="cmr-5">1</span></span><span 
@@ -3590,16 +3591,16 @@ class="cmr-8">&#x00A0;</span><br /><span class="label"><a
 class="cmr-5">18</span></span>
      </div>
      </li></ul>
-<!--l. 1176--><p class="noindent" >
+<!--l. 1159--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">5.3   </span> <a 
  id="x1-630005.3"></a>Pipelining Semantics</h4>
-<!--l. 1178--><p class="noindent" >Operations can be pipelined using <span 
+<!--l. 1161--><p class="noindent" >Operations can be pipelined using <span 
 class="cmti-10">operator</span><span 
 class="cmsy-10">|</span>. In order to illustrate the pipelining
 semantics we will consider following scenario: suppose one wants to read 1KB form a
 files, however the prerequisite for reading is creating a lock file. Now let us consider
 following code:
-   <!--l. 1181-->
+   <!--l. 1164-->
 <div class="lstlisting" id="listing-11"><span class="label"><a 
  id="x1-63001r1"></a><span 
 class="cmr-5">1</span></span><span 
@@ -3899,7 +3900,7 @@ class="cmr-8">&#x00A0;</span><br /><span class="label"><a
 class="cmr-5">17</span></span>
 
    </div>
-<!--l. 1201--><p class="indent" >   In lines 6-7 the lock file is being created. Afterwards, in lines 8-10 the pipeline
+<!--l. 1184--><p class="indent" >   In lines 6-7 the lock file is being created. Afterwards, in lines 8-10 the pipeline
 continues: it does an open, a read and a close on the actual file. Finally, in line 11 the
 lock file is being deleted. Note that if an operation on the pipeline fails subsequent
 operations in the pipeline wont be executed, however their handlers will be called
@@ -3907,10 +3908,10 @@ with an error status of <span
 class="cmti-10">errPipelineFailed </span>(in order to allow for a clean up if
 necessary). Using the pipelining API makes the source code more coherent and the
 control flow more explicit.
-<!--l. 1206--><p class="noindent" >
+<!--l. 1189--><p class="noindent" >
    <h4 class="subsectionHead"><span class="titlemark">5.4   </span> <a 
  id="x1-640005.4"></a>List of Operations</h4>
-<!--l. 1209--><p class="noindent" >There are two types of operations: the <span 
+<!--l. 1192--><p class="noindent" >There are two types of operations: the <span 
 class="cmti-10">XrdCl::File </span>operations and <span 
 class="cmti-10">XrdCl::FileSys-tem</span>
 operations. Each operation has a well defined set of arguments, however <span 
@@ -3929,10 +3930,10 @@ only).
                                                                   
 
                                                                   
-<!--l. 1213--><p class="noindent" >
+<!--l. 1196--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">5.4.1   </span> <a 
  id="x1-650005.4.1"></a>File Operations</h5>
-<!--l. 1215--><p class="noindent" >All arguments of any File Operation (except for the <span 
+<!--l. 1198--><p class="noindent" >All arguments of any File Operation (except for the <span 
 class="cmti-10">XrdCl::File </span>object itself) are
 <span 
 class="cmbx-10">liftable to </span><span 
@@ -3942,7 +3943,7 @@ class="cmbxti-10">std::future</span>.
      <ul class="itemize1">
      <li class="itemize"> <span 
 class="cmbx-10">Open </span>&#8211; open remote / local file
-     <!--l. 1221--><p class="noindent" ><span 
+     <!--l. 1204--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -3952,7 +3953,7 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">Open( XrdCl::File *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1227--><p class="noindent" ><span 
+     <!--l. 1210--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">url</span> &#8211; base <span 
@@ -3968,10 +3969,10 @@ class="cmbx-10">type</span>: <span
 class="cmti-10">XrdCl::Access::Mode</span>, <span 
 class="cmbx-10">default</span>: <span 
 class="cmti-10">Access::None</span></li></ul>
-     <!--l. 1234--><p class="noindent" >Operation <span 
+     <!--l. 1217--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1236--><p class="noindent" ><span 
+     <!--l. 1219--><p class="noindent" ><span 
 class="cmbx-10">Response</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -3983,7 +3984,7 @@ class="cmr-7">(not for XrdCl::ResponseHandler)</span></li></ul>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">Read </span>&#8211; read data from remote / local file
-     <!--l. 1246--><p class="noindent" ><span 
+     <!--l. 1229--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -3993,7 +3994,7 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">Read( XrdCl::File *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1252--><p class="noindent" ><span 
+     <!--l. 1235--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">offset</span> &#8211; base <span 
@@ -4010,16 +4011,16 @@ class="cmti-10">uint32&#x02D9;t</span>
          <li class="itemize"><span class="underline">buffer</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">void*</span></li></ul>
-     <!--l. 1259--><p class="noindent" >Operation <span 
+     <!--l. 1242--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1261--><p class="noindent" ><span 
+     <!--l. 1244--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">XrdCl::ChunkInfo</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">Close </span>&#8211; close remote / local file
-     <!--l. 1267--><p class="noindent" ><span 
+     <!--l. 1250--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4027,16 +4028,16 @@ class="cmti-10">Close( XrdCl::File &amp;file );</span>
          </li>
          <li class="itemize"><span 
 class="cmti-10">Close( XrdCl::File *file );</span></li></ul>
-     <!--l. 1273--><p class="noindent" >Operation <span 
+     <!--l. 1256--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1275--><p class="noindent" ><span 
+     <!--l. 1258--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">void</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">Stat </span>&#8211; stat the remote / local file
-     <!--l. 1281--><p class="noindent" ><span 
+     <!--l. 1264--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4046,22 +4047,22 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">Stat( XrdCl::File *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1287--><p class="noindent" ><span 
+     <!--l. 1270--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">force</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">bool</span></li></ul>
-     <!--l. 1292--><p class="noindent" >Operation <span 
+     <!--l. 1275--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1294--><p class="noindent" ><span 
+     <!--l. 1277--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">XrdCl::StatInfo</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">Write </span>&#8211; write data to remote / local file
-     <!--l. 1300--><p class="noindent" ><span 
+     <!--l. 1283--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4071,7 +4072,7 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">Write( XrdCl::File *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1306--><p class="noindent" ><span 
+     <!--l. 1289--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
                                                                   
@@ -4088,16 +4089,16 @@ class="cmti-10">uint32&#x02D9;t</span>
          <li class="itemize"><span class="underline">buffer</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">void*</span></li></ul>
-     <!--l. 1313--><p class="noindent" >Operation <span 
+     <!--l. 1296--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1315--><p class="noindent" ><span 
+     <!--l. 1298--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">void</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">Sync </span>&#8211; sync the remote / local file
-     <!--l. 1321--><p class="noindent" ><span 
+     <!--l. 1304--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4105,16 +4106,16 @@ class="cmti-10">Sync( XrdCl::File &amp;file );</span>
          </li>
          <li class="itemize"><span 
 class="cmti-10">Sync( XrdCl::File *file );</span></li></ul>
-     <!--l. 1327--><p class="noindent" >Operation <span 
+     <!--l. 1310--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1329--><p class="noindent" ><span 
+     <!--l. 1312--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">void</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">Truncate </span>&#8211; truncate the remote / local file
-     <!--l. 1335--><p class="noindent" ><span 
+     <!--l. 1318--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4124,22 +4125,22 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">Truncate( XrdCl::File *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1341--><p class="noindent" ><span 
+     <!--l. 1324--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">size</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">uint64&#x02D9;t</span></li></ul>
-     <!--l. 1346--><p class="noindent" >Operation <span 
+     <!--l. 1329--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1348--><p class="noindent" ><span 
+     <!--l. 1331--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">void</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">VectorRead </span>&#8211; vector-read data from remote / local file
-     <!--l. 1354--><p class="noindent" ><span 
+     <!--l. 1337--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4152,7 +4153,7 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">VectorRead( XrdCl::File *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1360--><p class="noindent" ><span 
+     <!--l. 1343--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">chunks</span> &#8211; base <span 
@@ -4162,16 +4163,16 @@ class="cmti-10">XrdCl::ChunkList</span>
          <li class="itemize"><span class="underline">buffer</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">void*</span></li></ul>
-     <!--l. 1366--><p class="noindent" >Operation <span 
+     <!--l. 1349--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1368--><p class="noindent" ><span 
+     <!--l. 1351--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">XrdCl::ChunkList</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">VectorWrite </span>&#8211; vector-write data to remote / local file
-     <!--l. 1374--><p class="noindent" ><span 
+     <!--l. 1357--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4181,22 +4182,22 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">VectorWrite( XrdCl::File *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1380--><p class="noindent" ><span 
+     <!--l. 1363--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">chunks</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">XrdCl::ChunkList</span></li></ul>
-     <!--l. 1385--><p class="noindent" >Operation <span 
+     <!--l. 1368--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1387--><p class="noindent" ><span 
+     <!--l. 1370--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">void</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">WriteV </span>&#8211; writev data to remote / local file
-     <!--l. 1393--><p class="noindent" ><span 
+     <!--l. 1376--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4206,7 +4207,7 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">WriteV( XrdCl::File *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1399--><p class="noindent" ><span 
+     <!--l. 1382--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">offset</span> &#8211; base <span 
@@ -4220,10 +4221,10 @@ class="cmti-10">struct iovec*</span>
          <li class="itemize"><span class="underline">iovcnt</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">int</span></li></ul>
-     <!--l. 1406--><p class="noindent" >Operation <span 
+     <!--l. 1389--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1408--><p class="noindent" ><span 
+     <!--l. 1391--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">void</span>
                                                                   
@@ -4232,7 +4233,7 @@ class="cmti-10">void</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">Fcntl </span>&#8211; issue fcntl for remote / local file
-     <!--l. 1414--><p class="noindent" ><span 
+     <!--l. 1397--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4242,22 +4243,22 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">Fcntl( XrdCl::File *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1420--><p class="noindent" ><span 
+     <!--l. 1403--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">arg</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">XrdCl::Buffer</span></li></ul>
-     <!--l. 1425--><p class="noindent" >Operation <span 
+     <!--l. 1408--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1427--><p class="noindent" ><span 
+     <!--l. 1410--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">XrdCl::Buffer</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">Visa </span>&#8211; issue fcntl for remote / local file
-     <!--l. 1433--><p class="noindent" ><span 
+     <!--l. 1416--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4265,17 +4266,17 @@ class="cmti-10">Visa( XrdCl::File &amp;file );</span>
          </li>
          <li class="itemize"><span 
 class="cmti-10">Visa( XrdCl::File *file );</span></li></ul>
-     <!--l. 1439--><p class="noindent" >Operation <span 
+     <!--l. 1422--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1441--><p class="noindent" ><span 
+     <!--l. 1424--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">XrdCl::Buffer</span>
      </li></ul>
-<!--l. 1447--><p class="noindent" >
+<!--l. 1430--><p class="noindent" >
    <h5 class="subsubsectionHead"><span class="titlemark">5.4.2   </span> <a 
  id="x1-660005.4.2"></a>FileSystem Operations</h5>
-<!--l. 1449--><p class="noindent" >All arguments of any FileSystem Operation (except for the <span 
+<!--l. 1432--><p class="noindent" >All arguments of any FileSystem Operation (except for the <span 
 class="cmti-10">XrdCl::FileSystem </span>object
 itself) are <span 
 class="cmbx-10">liftable to </span><span 
@@ -4285,7 +4286,7 @@ class="cmbxti-10">std::future</span>.
      <ul class="itemize1">
      <li class="itemize"> <span 
 class="cmbx-10">Locate </span>&#8211; locate remote file
-     <!--l. 1454--><p class="noindent" ><span 
+     <!--l. 1437--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4298,7 +4299,7 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">Locate( XrdCl::FileSystem *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1460--><p class="noindent" ><span 
+     <!--l. 1443--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">path</span> &#8211; base <span 
@@ -4308,16 +4309,16 @@ class="cmti-10">std::string</span>
          <li class="itemize"><span class="underline">flags</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">XrdCl::OpenFlags::Flags</span></li></ul>
-     <!--l. 1466--><p class="noindent" >Operation <span 
+     <!--l. 1449--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1468--><p class="noindent" ><span 
+     <!--l. 1451--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">LocationInfo</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">DeepLocate </span>&#8211; recursively locate remote file
-     <!--l. 1474--><p class="noindent" ><span 
+     <!--l. 1457--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4327,7 +4328,7 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">DeepLocate( XrdCl::FileSystem *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1480--><p class="noindent" ><span 
+     <!--l. 1463--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">path</span> &#8211; base <span 
@@ -4337,16 +4338,16 @@ class="cmti-10">std::string</span>
          <li class="itemize"><span class="underline">flags</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">XrdCl::OpenFlags::Flags</span></li></ul>
-     <!--l. 1486--><p class="noindent" >Operation <span 
+     <!--l. 1469--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1488--><p class="noindent" ><span 
+     <!--l. 1471--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">LocationInfo</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">Mv </span>&#8211; move remote file
-     <!--l. 1494--><p class="noindent" ><span 
+     <!--l. 1477--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4356,7 +4357,7 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">Mv( XrdCl::FileSystem *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1500--><p class="noindent" ><span 
+     <!--l. 1483--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">path1</span> &#8211; base <span 
@@ -4366,10 +4367,10 @@ class="cmti-10">std::string</span>
          <li class="itemize"><span class="underline">path2</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">std::string</span></li></ul>
-     <!--l. 1506--><p class="noindent" >Operation <span 
+     <!--l. 1489--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1508--><p class="noindent" ><span 
+     <!--l. 1491--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">void</span>
                                                                   
@@ -4378,7 +4379,7 @@ class="cmti-10">void</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">Query </span>&#8211; query remote server
-     <!--l. 1514--><p class="noindent" ><span 
+     <!--l. 1497--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4388,7 +4389,7 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">Query( XrdCl::FileSystem *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1520--><p class="noindent" ><span 
+     <!--l. 1503--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">queryCode</span> &#8211; base <span 
@@ -4398,16 +4399,16 @@ class="cmti-10">XrdCl::QueryCode::Code</span>
          <li class="itemize"><span class="underline">argument</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">XrdCl::Buffer</span></li></ul>
-     <!--l. 1526--><p class="noindent" >Operation <span 
+     <!--l. 1509--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1528--><p class="noindent" ><span 
+     <!--l. 1511--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">XrdCl::Buffer</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">Truncate </span>&#8211; truncate remote file
-     <!--l. 1534--><p class="noindent" ><span 
+     <!--l. 1517--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4417,7 +4418,7 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">Truncate( XrdCl::FileSystem *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1540--><p class="noindent" ><span 
+     <!--l. 1523--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">path</span> &#8211; base <span 
@@ -4427,16 +4428,16 @@ class="cmti-10">std::string</span>
          <li class="itemize"><span class="underline">size</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">uint64&#x02D9;t</span></li></ul>
-     <!--l. 1546--><p class="noindent" >Operation <span 
+     <!--l. 1529--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1548--><p class="noindent" ><span 
+     <!--l. 1531--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">void</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">Rm </span>&#8211; remove remote file
-     <!--l. 1554--><p class="noindent" ><span 
+     <!--l. 1537--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4449,22 +4450,22 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">Rm( XrdCl::FileSystem *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1560--><p class="noindent" ><span 
+     <!--l. 1543--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">path</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">std::string</span></li></ul>
-     <!--l. 1565--><p class="noindent" >Operation <span 
+     <!--l. 1548--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1567--><p class="noindent" ><span 
+     <!--l. 1550--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">void</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">MkDir </span>&#8211; create remote directory
-     <!--l. 1573--><p class="noindent" ><span 
+     <!--l. 1556--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4474,22 +4475,22 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">MkDir( XrdCl::FileSystem *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1579--><p class="noindent" ><span 
+     <!--l. 1562--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">path</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">std::string</span></li></ul>
-     <!--l. 1584--><p class="noindent" >Operation <span 
+     <!--l. 1567--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1586--><p class="noindent" ><span 
+     <!--l. 1569--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">void</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">RmDir </span>&#8211; remove remote directory
-     <!--l. 1592--><p class="noindent" ><span 
+     <!--l. 1575--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4499,16 +4500,16 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">RmDir( XrdCl::FileSystem *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1598--><p class="noindent" ><span 
+     <!--l. 1581--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">path</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">std::string</span></li></ul>
-     <!--l. 1603--><p class="noindent" >Operation <span 
+     <!--l. 1586--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1605--><p class="noindent" ><span 
+     <!--l. 1588--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">void</span>
      </li>
@@ -4517,7 +4518,7 @@ class="cmbx-10">ChMod </span>&#8211; change access mode on a remote directory or
                                                                   
 
                                                                   
-     <!--l. 1611--><p class="noindent" ><span 
+     <!--l. 1594--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4527,7 +4528,7 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">ChMod( XrdCl::FileSystem *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1617--><p class="noindent" ><span 
+     <!--l. 1600--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">path</span> &#8211; base <span 
@@ -4537,16 +4538,16 @@ class="cmti-10">std::string</span>
          <li class="itemize"><span class="underline">mode</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">XrdCl::Access::Mode</span></li></ul>
-     <!--l. 1623--><p class="noindent" >Operation <span 
+     <!--l. 1606--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1625--><p class="noindent" ><span 
+     <!--l. 1608--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">void</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">Ping </span>&#8211; ping remote server
-     <!--l. 1631--><p class="noindent" ><span 
+     <!--l. 1614--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4554,16 +4555,16 @@ class="cmti-10">Ping( XrdCl::FileSystem &amp;file );</span>
          </li>
          <li class="itemize"><span 
 class="cmti-10">Ping( XrdCl::FileSystem *file );</span></li></ul>
-     <!--l. 1637--><p class="noindent" >Operation <span 
+     <!--l. 1620--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1639--><p class="noindent" ><span 
+     <!--l. 1622--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">void</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">Stat </span>&#8211; stat remote directory or file
-     <!--l. 1645--><p class="noindent" ><span 
+     <!--l. 1628--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4573,16 +4574,16 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">Stat( XrdCl::FileSystem *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1651--><p class="noindent" ><span 
+     <!--l. 1634--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">path</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">std::string</span></li></ul>
-     <!--l. 1656--><p class="noindent" >Operation <span 
+     <!--l. 1639--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1658--><p class="noindent" ><span 
+     <!--l. 1641--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">XrdCl::StatInfo</span>
                                                                   
@@ -4591,7 +4592,7 @@ class="cmti-10">XrdCl::StatInfo</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">StatVFS </span>&#8211; status information for a Virtual File System
-     <!--l. 1664--><p class="noindent" ><span 
+     <!--l. 1647--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4601,22 +4602,22 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">StatVFS( XrdCl::FileSystem *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1670--><p class="noindent" ><span 
+     <!--l. 1653--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">path</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">std::string</span></li></ul>
-     <!--l. 1675--><p class="noindent" >Operation <span 
+     <!--l. 1658--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1677--><p class="noindent" ><span 
+     <!--l. 1660--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">XrdCl::StatInfoVFS</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">Protocol </span>&#8211; obtain server protocol information
-     <!--l. 1683--><p class="noindent" ><span 
+     <!--l. 1666--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4624,16 +4625,16 @@ class="cmti-10">Protocol( XrdCl::FileSystem &amp;file );</span>
          </li>
          <li class="itemize"><span 
 class="cmti-10">Protocol( XrdCl::FileSystem *file );</span></li></ul>
-     <!--l. 1689--><p class="noindent" >Operation <span 
+     <!--l. 1672--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1691--><p class="noindent" ><span 
+     <!--l. 1674--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">XrdCl::ProtocolInfo</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">DirList </span>&#8211; list remote directory
-     <!--l. 1697--><p class="noindent" ><span 
+     <!--l. 1680--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4643,7 +4644,7 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">DirList( XrdCl::FileSystem *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1703--><p class="noindent" ><span 
+     <!--l. 1686--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">path</span> &#8211; base <span 
@@ -4653,10 +4654,10 @@ class="cmti-10">std::string</span>
          <li class="itemize"><span class="underline">flags</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">XrdCl::DirListFlags::Flags</span></li></ul>
-     <!--l. 1709--><p class="noindent" >Operation <span 
+     <!--l. 1692--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1711--><p class="noindent" ><span 
+     <!--l. 1694--><p class="noindent" ><span 
 class="cmbx-10">Response</span>:<span 
 class="cmti-10">XrdCl::DirectoryList</span>
                                                                   
@@ -4665,7 +4666,7 @@ class="cmti-10">XrdCl::DirectoryList</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">SendInfo </span>&#8211; send info to remote server
-     <!--l. 1717--><p class="noindent" ><span 
+     <!--l. 1700--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4675,22 +4676,22 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">SendInfo( XrdCl::FileSystem *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1723--><p class="noindent" ><span 
+     <!--l. 1706--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">info</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">std::string</span></li></ul>
-     <!--l. 1728--><p class="noindent" >Operation <span 
+     <!--l. 1711--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1730--><p class="noindent" ><span 
+     <!--l. 1713--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">XrdCl::Buffer</span>
      </li>
      <li class="itemize"> <span 
 class="cmbx-10">Prepare </span>&#8211; prepare one or more files for access
-     <!--l. 1736--><p class="noindent" ><span 
+     <!--l. 1719--><p class="noindent" ><span 
 class="cmbx-10">Signature</span>:
          <ul class="itemize2">
          <li class="itemize"><span 
@@ -4700,7 +4701,7 @@ class="cmti-10">&#x2026;);</span>
          <li class="itemize"><span 
 class="cmti-10">Prepare( XrdCl::FileSystem *file, </span><span 
 class="cmti-10">&#x2026;);</span></li></ul>
-     <!--l. 1742--><p class="noindent" ><span 
+     <!--l. 1725--><p class="noindent" ><span 
 class="cmbx-10">Arguments </span>(remaining):
          <ul class="itemize2">
          <li class="itemize"><span class="underline">fileList</span> &#8211; base <span 
@@ -4717,10 +4718,10 @@ class="cmti-10">XrdCl::PrepareFlags::Flags</span>
          <li class="itemize"><span class="underline">priority</span> &#8211; base <span 
 class="cmbx-10">type</span>: <span 
 class="cmti-10">uint8&#x02D9;t</span></li></ul>
-     <!--l. 1749--><p class="noindent" >Operation <span 
+     <!--l. 1732--><p class="noindent" >Operation <span 
 class="cmbx-10">status</span>: <span 
 class="cmti-10">XRootDStatus</span>
-     <!--l. 1751--><p class="noindent" ><span 
+     <!--l. 1734--><p class="noindent" ><span 
 class="cmbx-10">Response</span>: <span 
 class="cmti-10">XrdCl::Buffer</span>
      </li></ul>
